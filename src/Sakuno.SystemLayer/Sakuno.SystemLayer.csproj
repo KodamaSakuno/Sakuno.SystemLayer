@@ -151,6 +151,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegistryKeyWatcher.cs" />
     <Compile Include="RegistryNotifyFilter.cs" />
+    <Compile Include="SHCore.cs">
+      <DependentUpon>NativeMethods.cs</DependentUpon>
+    </Compile>
     <Compile Include="Shell32.cs">
       <DependentUpon>NativeMethods.cs</DependentUpon>
     </Compile>

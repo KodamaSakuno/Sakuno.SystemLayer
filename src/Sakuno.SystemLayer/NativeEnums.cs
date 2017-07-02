@@ -423,5 +423,19 @@ namespace Sakuno.SystemLayer
             DSH_NONE,
             DSH_ALLOWDROPDESCRIPTIONTEXT = 1,
         }
+
+        [Flags]
+        public enum ACCENT_FLAGS
+        {
+            DrawLeftBorder = 0x20,
+            DrawTopBorder = 0x40,
+            DrawRightBorder = 0x80,
+            DrawBottomBorder = 0x100,
+            DrawTopLeftBorder = (DrawLeftBorder | DrawTopBorder),
+            DrawTopRightBorder = (DrawTopBorder | DrawRightBorder),
+            DrawBottomLeftBorder = (DrawLeftBorder | DrawBottomBorder),
+            DrawBottomRightBorder = (DrawRightBorder | DrawBottomBorder),
+            DrawAllBorders = (DrawLeftBorder | DrawTopBorder | DrawRightBorder | DrawBottomBorder)
+        }
     }
 }

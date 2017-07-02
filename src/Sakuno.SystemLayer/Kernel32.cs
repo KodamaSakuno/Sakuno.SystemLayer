@@ -34,6 +34,11 @@ namespace Sakuno.SystemLayer
             [DllImport(DllName)]
             public static extern IntPtr GetCurrentThread();
 
+            [DllImport(DllName)]
+            public static extern int GetCurrentProcessId();
+            [DllImport(DllName)]
+            public static extern int GetCurrentThreadId();
+
             [DllImport(DllName, SetLastError = true)]
             [return: MarshalAs(UnmanagedType.Bool)]
             public static extern bool IsWow64Process(IntPtr hProcess, [MarshalAs(UnmanagedType.Bool)] out bool Wow64Process);

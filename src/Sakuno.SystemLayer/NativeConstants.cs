@@ -1077,5 +1077,57 @@ namespace Sakuno.SystemLayer
             DROPIMAGE_WARNING = 7,
             DROPIMAGE_NOIMAGE = 8
         }
+
+        public enum WINDOWCOMPOSITIONATTRIB
+        {
+            WCA_UNDEFINED,
+            WCA_NCRENDERING_ENABLED,
+            WCA_NCRENDERING_POLICY,
+            WCA_TRANSITIONS_FORCEDISABLED,
+            WCA_ALLOW_NCPAINT,
+            WCA_CAPTION_BUTTON_BOUNDS,
+            WCA_NONCLIENT_RTL_LAYOUT,
+            WCA_FORCE_ICONIC_REPRESENTATION,
+            WCA_EXTENDED_FRAME_BOUNDS,
+            WCA_HAS_ICONIC_BITMAP,
+            WCA_THEME_ATTRIBUTES,
+            WCA_NCRENDERING_EXILED,
+            WCA_NCADORNMENTINFO,
+            WCA_EXCLUDED_FROM_LIVEPREVIEW,
+            WCA_VIDEO_OVERLAY_ACTIVE,
+            WCA_FORCE_ACTIVEWINDOW_APPEARANCE,
+            WCA_DISALLOW_PEEK,
+            WCA_CLOAK,
+            WCA_CLOAKED,
+            WCA_ACCENT_POLICY,
+            WCA_FREEZE_REPRESENTATION,
+            WCA_EVER_UNCLOAKED,
+            WCA_VISUAL_OWNER,
+            WCA_LAST,
+        }
+
+        public enum ACCENT_STATE
+        {
+            ACCENT_DISABLED,
+            ACCENT_ENABLE_GRADIENT,
+            ACCENT_ENABLE_TRANSPARENTGRADIENT,
+            ACCENT_ENABLE_BLURBEHIND,
+            ACCENT_INVALID_STATE,
+        }
+
+        public enum PROCESS_DPI_AWARENESS
+        {
+            PROCESS_DPI_UNAWARE,
+            PROCESS_SYSTEM_DPI_AWARE,
+            PROCESS_PER_MONITOR_DPI_AWARE,
+        }
+
+        public enum MONITOR_DPI_TYPE
+        {
+            MDT_EFFECTIVE_DPI,
+            MDT_ANGULAR_DPI,
+            MDT_RAW_DPI,
+            MDT_DEFAULT = MDT_EFFECTIVE_DPI,
+        }
     }
 }

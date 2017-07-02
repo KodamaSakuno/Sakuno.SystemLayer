@@ -11,10 +11,15 @@ namespace Sakuno.SystemLayer
         {
             const string DllName = "user32.dll";
 
+            [DllImport(DllName, CharSet = CharSet.Unicode, SetLastError = true)]
+            public static extern int SendMessageW(IntPtr hWnd, NativeConstants.WindowMessage Msg, IntPtr wParam, IntPtr lParam);
+
             [DllImport(DllName, SetLastError = true)]
             [return: MarshalAs(UnmanagedType.Bool)]
             public static extern bool PostMessageW(IntPtr hWnd, NativeConstants.WindowMessage Msg, IntPtr wParam, IntPtr lParam);
 
+            [DllImport(DllName, SetLastError = true)]
+            public static extern IntPtr GetParent(IntPtr hWnd);
             [DllImport(DllName)]
             public static extern IntPtr SetParent(IntPtr hWndChild, IntPtr hWndNewParent);
 
@@ -60,9 +65,12 @@ namespace Sakuno.SystemLayer
             [DllImport(DllName, SetLastError = true)]
             [return: MarshalAs(UnmanagedType.Bool)]
             public static extern bool EnumWindows(NativeDelegates.EnumWindowsProc lpEnumFunc, IntPtr lParam);
-            [DllImport(DllName, SetLastError = true)]
+            [DllImport(DllName)]
             [return: MarshalAs(UnmanagedType.Bool)]
             public static extern bool EnumChildWindows(IntPtr hwndParent, NativeDelegates.EnumWindowsProc lpEnumFunc, IntPtr lParam);
+            [DllImport(DllName)]
+            [return: MarshalAs(UnmanagedType.Bool)]
+            public static extern bool EnumThreadWindows(int dwThreadId, NativeDelegates.EnumWindowsProc lpEnumFunc, IntPtr lParam);
 
             [DllImport(DllName, CharSet = CharSet.Unicode)]
             public static extern int GetClassNameW(IntPtr hWnd, [MarshalAs(UnmanagedType.LPWStr)] StringBuilder lpClassName, int nMaxCount);
@@ -70,18 +78,14 @@ namespace Sakuno.SystemLayer
             public static extern int GetWindowTextW(IntPtr hWnd, [MarshalAs(UnmanagedType.LPWStr)] StringBuilder lpText, int nMaxCount);
 
             #region Window Long
+
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static IntPtr GetWindowLongPtr(IntPtr hWnd, NativeConstants.GetWindowLong nIndex) =>
                 new IntPtr(OS.Is64Bit ? WindowLong.GetWindowLongPtrW(hWnd, nIndex) : WindowLong.GetWindowLongW(hWnd, nIndex));
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static IntPtr SetWindowLongPtr(IntPtr hWnd, NativeConstants.GetWindowLong nIndex, IntPtr dwNewLong) =>
                 OS.Is64Bit ? WindowLong.SetWindowLongPtrW(hWnd, nIndex, dwNewLong) : new IntPtr(WindowLong.SetWindowLongW(hWnd, nIndex, dwNewLong.ToInt32()));
-            [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static IntPtr GetClassLongPtr(IntPtr hWnd, NativeConstants.GetClassLong nIndex) =>
-                new IntPtr(OS.Is64Bit ? WindowLong.GetClassLongPtrW(hWnd, nIndex) : WindowLong.GetClassLongW(hWnd, nIndex));
-            [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static IntPtr SetClassLongPtr(IntPtr hWnd, NativeConstants.GetClassLong nIndex, IntPtr dwNewLong) =>
-                OS.Is64Bit ? WindowLong.SetClassLongPtrW(hWnd, nIndex, dwNewLong) : new IntPtr(WindowLong.SetClassLongW(hWnd, nIndex, dwNewLong.ToInt32()));
+
             static class WindowLong
             {
                 [DllImport(DllName, CharSet = CharSet.Unicode, SetLastError = true)]
@@ -93,7 +97,21 @@ namespace Sakuno.SystemLayer
                 public static extern int SetWindowLongW(IntPtr hWnd, NativeConstants.GetWindowLong nIndex, int dwNewLong);
                 [DllImport(DllName, CharSet = CharSet.Unicode, SetLastError = true)]
                 public static extern IntPtr SetWindowLongPtrW(IntPtr hWnd, NativeConstants.GetWindowLong nIndex, IntPtr dwNewLong);
+            }
 
+            #endregion
+
+            #region Class Long
+
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            public static IntPtr GetClassLongPtr(IntPtr hWnd, NativeConstants.GetClassLong nIndex) =>
+                new IntPtr(OS.Is64Bit ? ClassLong.GetClassLongPtrW(hWnd, nIndex) : ClassLong.GetClassLongW(hWnd, nIndex));
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            public static IntPtr SetClassLongPtr(IntPtr hWnd, NativeConstants.GetClassLong nIndex, IntPtr dwNewLong) =>
+                OS.Is64Bit ? ClassLong.SetClassLongPtrW(hWnd, nIndex, dwNewLong) : new IntPtr(ClassLong.SetClassLongW(hWnd, nIndex, dwNewLong.ToInt32()));
+
+            static class ClassLong
+            {
                 [DllImport(DllName, CharSet = CharSet.Unicode, SetLastError = true)]
                 public static extern int GetClassLongW(IntPtr hWnd, NativeConstants.GetClassLong nIndex);
                 [DllImport(DllName, CharSet = CharSet.Unicode, SetLastError = true)]
@@ -104,20 +122,16 @@ namespace Sakuno.SystemLayer
                 [DllImport(DllName, CharSet = CharSet.Unicode, SetLastError = true)]
                 public static extern IntPtr SetClassLongPtrW(IntPtr hWnd, NativeConstants.GetClassLong nIndex, IntPtr dwNewLong);
             }
+
             #endregion
 
-            #region SystemParametersInfo
             [DllImport(DllName, CharSet = CharSet.Auto)]
             public static extern bool SystemParametersInfo(NativeConstants.SPI uiAction, int uiParam, ref NativeStructs.RECT pvParam, int fWinIni);
 
-            #endregion
-
-            #region Device Context
             [DllImport(DllName, SetLastError = true)]
             public static extern IntPtr GetDC(IntPtr hWnd);
             [DllImport(DllName)]
             public static extern bool ReleaseDC(IntPtr hWnd, IntPtr hDC);
-            #endregion
 
             [DllImport(DllName)]
             [return: MarshalAs(UnmanagedType.Bool)]
@@ -167,6 +181,10 @@ namespace Sakuno.SystemLayer
             public static extern int GetSystemMetrics(NativeConstants.SystemMetrics nIndex);
 
             [DllImport(DllName)]
+            public static extern IntPtr WindowFromPoint(NativeStructs.POINT Point);
+            [DllImport(DllName)]
+            public static extern IntPtr ChildWindowFromPoint(IntPtr hWndParent, NativeStructs.POINT Point);
+            [DllImport(DllName)]
             public static extern IntPtr RealChildWindowFromPoint(IntPtr hwndParent, NativeStructs.POINT ptParentClientCoords);
 
             [DllImport(DllName, SetLastError = true)]
@@ -181,9 +199,6 @@ namespace Sakuno.SystemLayer
             [return: MarshalAs(UnmanagedType.Bool)]
             public static extern bool UnhookWindowsHookEx(IntPtr hhk);
 
-            [DllImport(DllName, CharSet = CharSet.Unicode, SetLastError = true)]
-            public static extern int SendMessageW(IntPtr hWnd, NativeConstants.WindowMessage Msg, IntPtr wParam, IntPtr lParam);
-
             [DllImport(DllName, SetLastError = true)]
             public static extern short RegisterClassEx(ref NativeStructs.WNDCLASSEX lpwcx);
 
@@ -193,6 +208,19 @@ namespace Sakuno.SystemLayer
             [DllImport(DllName, SetLastError = true)]
             [return: MarshalAs(UnmanagedType.Bool)]
             public static extern bool ChangeWindowMessageFilterEx(IntPtr hWnd, NativeConstants.WindowMessage message, int action, IntPtr pChangeFilterStruct);
+
+            [DllImport(DllName)]
+            [return: MarshalAs(UnmanagedType.Bool)]
+            public static extern bool IsWindowVisible(IntPtr hWnd);
+            [DllImport(DllName)]
+            [return: MarshalAs(UnmanagedType.Bool)]
+            public static extern bool IsIconic(IntPtr hWnd);
+            [DllImport(DllName)]
+            [return: MarshalAs(UnmanagedType.Bool)]
+            public static extern bool IsZoomed(IntPtr hWnd);
+
+            [DllImport(DllName, SetLastError = true)]
+            public static extern int SetWindowCompositionAttribute(IntPtr hwnd, ref NativeStructs.WINDOWCOMPOSITIONATTRIBDATA pAttrData);
         }
     }
 }

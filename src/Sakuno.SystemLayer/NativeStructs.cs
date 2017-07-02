@@ -521,5 +521,22 @@ namespace Sakuno.SystemLayer
             [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 260)]
             public string szInsert;
         }
+
+        [StructLayout(LayoutKind.Sequential)]
+        public unsafe struct WINDOWCOMPOSITIONATTRIBDATA
+        {
+            public NativeConstants.WINDOWCOMPOSITIONATTRIB dwAttrib;
+            public void* pvData;
+            public int cbData;
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct ACCENT_POLICY
+        {
+            public NativeConstants.ACCENT_STATE dwAccentState;
+            public NativeEnums.ACCENT_FLAGS dwFlags;
+            public int dwGradientColor;
+            public int dwAnimationId;
+        }
     }
 }
