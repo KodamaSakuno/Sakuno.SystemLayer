@@ -1,5 +1,6 @@
 ﻿using Sakuno.SystemLayer.Dialogs;
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Runtime.InteropServices;
@@ -9,6 +10,7 @@ namespace Sakuno.SystemLayer
 {
     public static partial class NativeStructs
     {
+        [DebuggerDisplay("POINT ({X}, {Y})")]
         [StructLayout(LayoutKind.Sequential)]
         public struct POINT
         {
@@ -33,6 +35,8 @@ namespace Sakuno.SystemLayer
                 Y = y;
             }
         }
+
+        [DebuggerDisplay("RECT [{Left}, {Top}, {Right}, {Bottom}] ({Width} x {Height})")]
         [StructLayout(LayoutKind.Sequential)]
         public struct RECT
         {
@@ -52,6 +56,8 @@ namespace Sakuno.SystemLayer
                 Bottom = bottom;
             }
         }
+
+        [DebuggerDisplay("MARGINS [{Left}, {Top}, {Right}, {Bottom}]")]
         [StructLayout(LayoutKind.Sequential)]
         public struct MARGINS
         {
@@ -138,12 +144,11 @@ namespace Sakuno.SystemLayer
             public byte tdData;
         }
 
-        #region Bitmap
-        [StructLayoutAttribute(LayoutKind.Sequential)]
+        [StructLayout(LayoutKind.Sequential)]
         public struct BITMAPINFO
         {
             public BITMAPINFOHEADER bmiHeader;
-            [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 1, ArraySubType = UnmanagedType.Struct)]
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 1, ArraySubType = UnmanagedType.Struct)]
             public RGBQUAD[] bmiColors;
         }
         [StructLayout(LayoutKind.Sequential)]
@@ -169,9 +174,7 @@ namespace Sakuno.SystemLayer
             public byte rgbRed;
             public byte rgbReserved;
         }
-        #endregion
 
-        #region DWM
         [StructLayout(LayoutKind.Sequential)]
         public struct DWM_THUMBNAIL_PROPERTIES
         {
@@ -184,7 +187,6 @@ namespace Sakuno.SystemLayer
             [MarshalAs(UnmanagedType.Bool)]
             public bool fSourceClientAreaOnly;
         }
-        #endregion
 
         [StructLayout(LayoutKind.Sequential)]
         public struct POWERBROADCAST_SETTING
