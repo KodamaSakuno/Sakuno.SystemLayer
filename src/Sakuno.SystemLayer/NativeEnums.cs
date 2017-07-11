@@ -437,5 +437,49 @@ namespace Sakuno.SystemLayer
             DrawBottomRightBorder = (DrawRightBorder | DrawBottomBorder),
             DrawAllBorders = (DrawLeftBorder | DrawTopBorder | DrawRightBorder | DrawBottomBorder)
         }
+
+        [Flags]
+        public enum SC_MANAGER_ACCESS_RIGHTS
+        {
+            SC_MANAGER_CONNECT = 0x0001,
+            SC_MANAGER_CREATE_SERVICE = 0x0002,
+            SC_MANAGER_ENUMERATE_SERVICE = 0x0004,
+            SC_MANAGER_LOCK = 0x0008,
+            SC_MANAGER_QUERY_LOCK_STATUS = 0x0010,
+            SC_MANAGER_MODIFY_BOOT_CONFIG = 0x0020,
+        }
+
+        [Flags]
+        public enum SC_ENUM_TYPE
+        {
+            SC_ENUM_PROCESS_INFO,
+        }
+
+        [Flags]
+        public enum SERVICE_TYPE
+        {
+            SERVICE_KERNEL_DRIVER = 0x01,
+            SERVICE_FILE_SYSTEM_DRIVER = 0x02,
+            SERVICE_FILE_ADAPTER = 0x04,
+            SERVICE_FILE_RECOGNIZER_DRIVER = 0x08,
+            SERVICE_DRIVER = SERVICE_KERNEL_DRIVER | SERVICE_FILE_SYSTEM_DRIVER | SERVICE_FILE_RECOGNIZER_DRIVER,
+            SERVICE_WIN32_OWN_PROCESS = 0x10,
+            SERVICE_WIN32_SHARE_PROCESS = 0x20,
+            SERVICE_WIN32 = SERVICE_WIN32_OWN_PROCESS | SERVICE_WIN32_SHARE_PROCESS,
+            SERVICE_USER_SERVICE = 0x40,
+            SERVICE_USERSERVICE_INSTANCE = 0x80,
+            SERVICE_USER_OWN_PROCESS = SERVICE_WIN32_OWN_PROCESS | SERVICE_USER_SERVICE,
+            SERVICE_USER_SHARE_PROCESS = SERVICE_WIN32_SHARE_PROCESS | SERVICE_USER_SERVICE,
+            SERVICE_INTERACTIVE_PROCESS = 0x100,
+            SERVICE_TYPE_ALL = SERVICE_FILE_ADAPTER | SERVICE_DRIVER | SERVICE_WIN32 | SERVICE_USER_SERVICE | SERVICE_USERSERVICE_INSTANCE | SERVICE_INTERACTIVE_PROCESS,
+        }
+
+        [Flags]
+        public enum SERVICE_STATE
+        {
+            SERVICE_ACTIVE = 1,
+            SERVICE_INACTIVE,
+            SERVICE_STATE_ALL,
+        }
     }
 }

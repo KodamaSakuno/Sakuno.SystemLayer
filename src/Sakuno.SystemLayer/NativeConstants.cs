@@ -1129,5 +1129,16 @@ namespace Sakuno.SystemLayer
             MDT_RAW_DPI,
             MDT_DEFAULT = MDT_EFFECTIVE_DPI,
         }
+
+        public enum SERVICE_STATE
+        {
+            SERVICE_STOPPED = 1,
+            SERVICE_START_PENDING,
+            SERVICE_STOP_PENDING,
+            SERVICE_RUNNING,
+            SERVICE_CONTINUE_PENDING,
+            SERVICE_PAUSE_PENDING,
+            SERVICE_PAUSED,
+        }
     }
 }

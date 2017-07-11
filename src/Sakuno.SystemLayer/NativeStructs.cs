@@ -540,5 +540,27 @@ namespace Sakuno.SystemLayer
             public int dwGradientColor;
             public int dwAnimationId;
         }
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct SERVICE_STATUS_PROCESS
+        {
+            public NativeEnums.SERVICE_TYPE dwServiceType;
+            public NativeConstants.SERVICE_STATE dwCurrentState;
+            public int dwControlsAccepted;
+            public int dwWin32ExitCode;
+            public int dwServiceSpecificExitCode;
+            public int dwCheckPoint;
+            public int dwWaitHint;
+            public int dwProcessId;
+            public int dwServiceFlags;
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct ENUM_SERVICE_STATUS_PROCESS
+        {
+            public IntPtr lpServiceName;
+            public IntPtr lpDisplayName;
+            public SERVICE_STATUS_PROCESS ServiceStatusProcess;
+        }
     }
 }
