@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Runtime.InteropServices;
+using System.Windows.Media;
 using FILETIME = System.Runtime.InteropServices.ComTypes.FILETIME;
 
 namespace Sakuno.SystemLayer
@@ -561,6 +562,18 @@ namespace Sakuno.SystemLayer
             public IntPtr lpServiceName;
             public IntPtr lpDisplayName;
             public SERVICE_STATUS_PROCESS ServiceStatusProcess;
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct RGBA
+        {
+            public byte R;
+            public byte G;
+            public byte B;
+            public byte A;
+
+            public Color ToColor() =>
+                Color.FromArgb(A, R, G, B);
         }
     }
 }

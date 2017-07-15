@@ -100,7 +100,7 @@
     <Compile Include="Dialogs\TaskDialogResult.cs" />
     <Compile Include="Dialogs\TaskDialogTickEventArgs.cs" />
     <Compile Include="DataObjectExtensions.cs" />
-    <Compile Include="DwmAPI.cs">
+    <Compile Include="DwmApi.cs">
       <DependentUpon>NativeMethods.cs</DependentUpon>
     </Compile>
     <Compile Include="FileSystem.cs" />
@@ -170,6 +170,9 @@
       <DependentUpon>NativeMethods.cs</DependentUpon>
     </Compile>
     <Compile Include="User32.cs">
+      <DependentUpon>NativeMethods.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UxTheme.cs">
       <DependentUpon>NativeMethods.cs</DependentUpon>
     </Compile>
     <Compile Include="WinHttp.cs">
