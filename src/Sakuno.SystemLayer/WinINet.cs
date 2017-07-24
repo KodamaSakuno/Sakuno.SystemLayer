@@ -31,7 +31,6 @@ namespace Sakuno.SystemLayer
             public static extern unsafe bool InternetQueryOptionW(IntPtr hInternet, NativeConstants.INTERNET_OPTION dwOption, void* lpBuffer, ref int lpdwBufferLength);
             [DllImport(DllName, CharSet = CharSet.Unicode, SetLastError = true)]
             public static extern unsafe bool InternetSetOptionW(IntPtr hInternet, NativeConstants.INTERNET_OPTION dwOption, void* lpBuffer, int lpdwBufferLength);
-
         }
     }
 }

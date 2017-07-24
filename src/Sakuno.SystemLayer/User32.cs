@@ -203,7 +203,7 @@ namespace Sakuno.SystemLayer
             public static extern short RegisterClassEx(ref NativeStructs.WNDCLASSEX lpwcx);
 
             [DllImport(DllName, CharSet = CharSet.Unicode, SetLastError = true)]
-            public static extern IntPtr CreateWindowExW(NativeEnums.ExtendedWindowStyle dwExStyle, [MarshalAs(UnmanagedType.LPWStr)] string lpClassName, [MarshalAs(UnmanagedType.LPWStr)] string lpWindowName, NativeEnums.WindowStyle dwStyle, int x, int y, int nWidth, int nHeight, IntPtr hWndParent, IntPtr hMenu, IntPtr hInstance, IntPtr lpParam);
+            public static extern IntPtr CreateWindowExW(NativeEnums.ExtendedWindowStyles dwExStyle, [MarshalAs(UnmanagedType.LPWStr)] string lpClassName, [MarshalAs(UnmanagedType.LPWStr)] string lpWindowName, NativeEnums.WindowStyles dwStyle, int x, int y, int nWidth, int nHeight, IntPtr hWndParent, IntPtr hMenu, IntPtr hInstance, IntPtr lpParam);
 
             [DllImport(DllName, SetLastError = true)]
             [return: MarshalAs(UnmanagedType.Bool)]

@@ -2,7 +2,6 @@
 {
     public static class FileSystem
     {
-        public static bool Unblock(string fileName) =>
-            NativeMethods.Kernel32.DeleteFileW(fileName + ":Zone.Identifier");
+        public static bool Unblock(string fileName) => NativeMethods.Kernel32.DeleteFileW(fileName + ":Zone.Identifier");
     }
 }

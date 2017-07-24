@@ -6,20 +6,20 @@ namespace Sakuno.SystemLayer
     {
         public enum ShowCommand
         {
-            SW_HIDE = 0,
-            SW_SHOWNORMAL = 1,
+            SW_HIDE,
+            SW_SHOWNORMAL,
             SW_NORMAL = 1,
-            SW_SHOWMINIMIZED = 2,
-            SW_SHOWMAXIMIZED = 3,
+            SW_SHOWMINIMIZED,
+            SW_SHOWMAXIMIZED,
             SW_MAXIMIZE = 3,
-            SW_SHOWNOACTIVATE = 4,
-            SW_SHOW = 5,
-            SW_MINIMIZE = 6,
-            SW_SHOWMINNOACTIVE = 7,
-            SW_SHOWNA = 8,
-            SW_RESTORE = 9,
-            SW_SHOWDEFAULT = 10,
-            SW_FORCEMINIMIZE = 11,
+            SW_SHOWNOACTIVATE,
+            SW_SHOW,
+            SW_MINIMIZE,
+            SW_SHOWMINNOACTIVE,
+            SW_SHOWNA,
+            SW_RESTORE,
+            SW_SHOWDEFAULT,
+            SW_FORCEMINIMIZE,
             SW_MAX = 11
         }
 
@@ -237,8 +237,9 @@ namespace Sakuno.SystemLayer
             WM_MOUSELEAVE = 0x02A3,
             WM_NCMOUSELEAVE = 0x02A2,
             WM_WTSSESSION_CHANGE = 0x02B1,
-            WM_TABLET_FIRST = 0x02c0,
-            WM_TABLET_LAST = 0x02df,
+            WM_TABLET_FIRST = 0x02C0,
+            WM_TABLET_LAST = 0x02DF,
+            WM_DPICHANGED = 0x02E0,
             WM_CUT = 0x0300,
             WM_COPY = 0x0301,
             WM_PASTE = 0x0302,
@@ -378,17 +379,17 @@ namespace Sakuno.SystemLayer
 
         public enum GetWindow
         {
-            GW_HWNDFIRST = 0,
-            GW_HWNDLAST = 1,
-            GW_HWNDNEXT = 2,
-            GW_HWNDPREV = 3,
-            GW_OWNER = 4,
-            GW_CHILD = 5,
-            GW_ENABLEDPOPUP = 6,
-            GW_MAX = 6,
+            GW_HWNDFIRST,
+            GW_HWNDLAST,
+            GW_HWNDNEXT,
+            GW_HWNDPREV,
+            GW_OWNER,
+            GW_CHILD,
+            GW_ENABLEDPOPUP,
+            GW_MAX,
         }
 
-        public enum SPI : uint
+        public enum SPI
         {
             SPI_GETBEEP = 0x0001,
             SPI_SETBEEP = 0x0002,

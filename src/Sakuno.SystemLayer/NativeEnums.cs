@@ -5,7 +5,7 @@ namespace Sakuno.SystemLayer
     public static partial class NativeEnums
     {
         [Flags]
-        public enum WindowStyle : uint
+        public enum WindowStyles : uint
         {
             WS_OVERLAPPED = 0x00000000,
             WS_POPUP = 0x80000000,
@@ -34,7 +34,7 @@ namespace Sakuno.SystemLayer
         }
 
         [Flags]
-        public enum ExtendedWindowStyle
+        public enum ExtendedWindowStyles
         {
             WS_EX_DLGMODALFRAME = 0x00000001,
             WS_EX_NOPARENTNOTIFY = 0x00000004,
