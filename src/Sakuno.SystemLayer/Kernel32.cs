@@ -65,6 +65,13 @@ namespace Sakuno.SystemLayer
             [DllImport(DllName, SetLastError = true)]
             [return: MarshalAs(UnmanagedType.Bool)]
             public static extern bool Process32Next(IntPtr hSnapshot, ref NativeStructs.PROCESSENTRY32 lppe);
+
+            [DllImport(DllName, SetLastError = true)]
+            [return: MarshalAs(UnmanagedType.Bool)]
+            public static extern bool AllocConsole();
+            [DllImport(DllName, SetLastError = true)]
+            [return: MarshalAs(UnmanagedType.Bool)]
+            public static extern bool FreeConsole();
         }
     }
 }
