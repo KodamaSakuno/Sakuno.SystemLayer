@@ -14,8 +14,9 @@ namespace Sakuno.SystemLayer
         public static bool IsWinXPOrLater => _os.Version.Major >= 6 || (_os.Version.Major == 5 && _os.Version.Minor >= 1);
         public static bool IsWin7OrLater => _os.Version.Major >= 7 || (_os.Version.Major == 6 && _os.Version.Minor >= 1);
         public static bool IsWin8OrLater => _os.Version.Major >= 7 || (_os.Version.Major == 6 && _os.Version.Minor >= 2);
-        public static bool IsWin81OrLater => _os.Version.Major >= 7 || (_os.Version.Major == 6 && _os.Version.Minor >= 3);
+        public static bool IsWin8Point1OrLater => _os.Version.Major >= 7 || (_os.Version.Major == 6 && _os.Version.Minor >= 3);
         public static bool IsWin10OrLater => _os.Version.Major >= 10;
+        public static bool IsWin10RS1OrLater => _os.Version.Major >= 10 && _os.Version.Build >= 14393;
 
         public static int? DotNetFrameworkReleaseNumber
         {
