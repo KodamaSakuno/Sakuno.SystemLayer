@@ -36,6 +36,10 @@ namespace Sakuno.SystemLayer
 
             [DllImport(DllName, SetLastError = true)]
             [return: MarshalAs(UnmanagedType.Bool)]
+            public static extern bool CloseWindow(IntPtr hWnd);
+
+            [DllImport(DllName, SetLastError = true)]
+            [return: MarshalAs(UnmanagedType.Bool)]
             public static extern bool GetWindowRect(IntPtr hWnd, out NativeStructs.RECT lpRect);
 
             [DllImport(DllName, SetLastError = true)]
@@ -204,6 +208,10 @@ namespace Sakuno.SystemLayer
 
             [DllImport(DllName, CharSet = CharSet.Unicode, SetLastError = true)]
             public static extern IntPtr CreateWindowExW(NativeEnums.ExtendedWindowStyles dwExStyle, [MarshalAs(UnmanagedType.LPWStr)] string lpClassName, [MarshalAs(UnmanagedType.LPWStr)] string lpWindowName, NativeEnums.WindowStyles dwStyle, int x, int y, int nWidth, int nHeight, IntPtr hWndParent, IntPtr hMenu, IntPtr hInstance, IntPtr lpParam);
+
+            [DllImport(DllName, SetLastError = true)]
+            [return: MarshalAs(UnmanagedType.Bool)]
+            public static extern bool DestroyWindow(IntPtr hWnd);
 
             [DllImport(DllName, SetLastError = true)]
             [return: MarshalAs(UnmanagedType.Bool)]
