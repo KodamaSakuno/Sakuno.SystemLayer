@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Sakuno.SystemLayer")]
 [assembly: AssemblyDescription("Sakuno's Win32 APIs wrapper")]
 [assembly: AssemblyProduct("Sakuno.SystemLayer")]
-[assembly: AssemblyCompany("sakuno.moe")]
+[assembly: AssemblyCompany("Kodama Sakuno")]
 [assembly: AssemblyCopyright("Copyright © 2017 神樹桜乃")]
 
 [assembly: ComVisible(false)]
