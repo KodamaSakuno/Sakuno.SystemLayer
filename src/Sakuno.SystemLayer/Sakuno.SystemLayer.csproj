@@ -175,6 +175,7 @@
     <Compile Include="UxTheme.cs">
       <DependentUpon>NativeMethods.cs</DependentUpon>
     </Compile>
+    <Compile Include="WindowMessageReceiver.cs" />
     <Compile Include="WinHttp.cs">
       <DependentUpon>NativeMethods.cs</DependentUpon>
     </Compile>

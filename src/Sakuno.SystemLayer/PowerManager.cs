@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Runtime.InteropServices;
-using System.Windows;
-using System.Windows.Interop;
+using System.Threading;
 
 namespace Sakuno.SystemLayer
 {
@@ -14,30 +13,45 @@ namespace Sakuno.SystemLayer
         public static event Action<PowerSource> PowerSourceChanged;
         public static event Action<bool> BatteryChargeStatusChanged;
 
-        public static IDisposable RegisterNotification(Window window)
+        static IDisposable _subscription;
+        static IntPtr _batteryPercentageNotification, _powerSourceNotification;
+
+        public static IDisposable SubscribeNotification()
         {
-            var hwndSource = PresentationSource.FromVisual(window) as HwndSource;
+            if (_subscription != null)
+                return _subscription;
 
-            GC.KeepAlive(window);
-
-            if (hwndSource == null)
-                return null;
+            var handle = WindowMessageReceiver.Instance.Handle;
 
             Guid guid;
 
             guid = NativeGuids.GUID_BATTERY_PERCENTAGE_REMAINING;
-            var batteryPercentageNotification = NativeMethods.User32.RegisterPowerSettingNotification(hwndSource.Handle, ref guid, 0);
+            _batteryPercentageNotification = NativeMethods.User32.RegisterPowerSettingNotification(handle, ref guid, 0);
 
             guid = NativeGuids.GUID_ACDC_POWER_SOURCE;
-            var powerSourceNotification = NativeMethods.User32.RegisterPowerSettingNotification(hwndSource.Handle, ref guid, 0);
+            _powerSourceNotification = NativeMethods.User32.RegisterPowerSettingNotification(handle, ref guid, 0);
 
-            hwndSource.AddHook(WndProc);
+            WindowMessageReceiver.Instance.AddHook(WndProc);
 
-            return Disposable.Create(() =>
-            {
-                NativeMethods.User32.UnregisterPowerSettingNotification(batteryPercentageNotification);
-                NativeMethods.User32.UnregisterPowerSettingNotification(powerSourceNotification);
-            });
+            var subscription = Disposable.Create(UnsubscribeNotification);
+
+            Volatile.Write(ref _subscription, subscription);
+
+            return subscription;
+        }
+
+        public static void UnsubscribeNotification()
+        {
+            if (Interlocked.Exchange(ref _subscription, null) == null)
+                return;
+
+            WindowMessageReceiver.Instance.RemoveHook(WndProc);
+
+            NativeMethods.User32.UnregisterPowerSettingNotification(_batteryPercentageNotification);
+            NativeMethods.User32.UnregisterPowerSettingNotification(_powerSourceNotification);
+
+            _batteryPercentageNotification = IntPtr.Zero;
+            _powerSourceNotification = IntPtr.Zero;
         }
 
         static unsafe IntPtr WndProc(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)

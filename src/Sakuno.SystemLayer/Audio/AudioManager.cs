@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using System.Threading;
 
 namespace Sakuno.SystemLayer.Audio
 {
@@ -10,7 +11,7 @@ namespace Sakuno.SystemLayer.Audio
         static NativeInterfaces.IAudioSessionManager2 _sessionManager;
 
         static AudioManagerEventSink _eventSink;
-        static IDisposable _notificationSubscription;
+        static IDisposable _subscription;
 
         public static AudioDevice DefaultDevice { get; internal set; }
 
@@ -62,25 +63,27 @@ namespace Sakuno.SystemLayer.Audio
             }
         }
 
-        public static IDisposable StartSessionNotification()
+        public static IDisposable SubscribeSessionNotification()
         {
-            if (_notificationSubscription != null)
-                return _notificationSubscription;
+            if (_subscription != null)
+                return _subscription;
 
             Marshal.ReleaseComObject(_sessionManager.GetSessionEnumerator());
 
             _sessionManager.RegisterSessionNotification(_eventSink);
 
-            return _notificationSubscription = Disposable.Create(StopSessionNotification);
+            var subscription = Disposable.Create(UnsubscribeSessionNotification);
+
+            Volatile.Write(ref _subscription, subscription);
+
+            return subscription;
         }
-        public static void StopSessionNotification()
+        public static void UnsubscribeSessionNotification()
         {
-            if (_notificationSubscription == null)
+            if (Interlocked.Exchange(ref _subscription, null) == null)
                 return;
 
             _sessionManager.UnregisterSessionNotification(_eventSink);
-
-            _notificationSubscription = null;
         }
 
         internal static void OnSessionCreated(NativeInterfaces.IAudioSessionControl newSession)
