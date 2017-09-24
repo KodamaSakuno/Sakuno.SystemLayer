@@ -23,14 +23,16 @@ namespace Sakuno.SystemLayer
             get
             {
                 const string SubKey = @"SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full\";
+                const string Name = "Release";
 
                 try
                 {
-                    using (var registerKey = Registry.LocalMachine.OpenSubKey(SubKey))
+                    using (var registerKey = Registry.LocalMachine.OpenSubKey(SubKey, false))
                     {
-                        var value = registerKey?.GetValue("Release");
+                        if (registerKey != null && registerKey.GetValueKind(Name) == RegistryValueKind.DWord)
+                            return (int)registerKey.GetValue(Name);
 
-                        return value != null ? (int?)value : null;
+                        return null;
                     }
                 }
                 catch
