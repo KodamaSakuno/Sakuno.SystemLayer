@@ -12,9 +12,12 @@ namespace Sakuno.SystemLayer
         public static bool Failed(int result) => result < 0;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static ushort HiWord(this IntPtr value) => (ushort)(value.ToInt64() >> 0x10 & 0xFFFFL);
+        public static int HiWord(this IntPtr value) => (int)(value.ToInt64() >> 16 & 0xFFFFL);
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static ushort LoWord(this IntPtr value) => (ushort)(value.ToInt64() & 0xFFFFL);
+        public static int LoWord(this IntPtr value) => (int)(value.ToInt64() & 0xFFFFL);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static IntPtr MakeParam(int lowWord, int highWord) => (IntPtr)(lowWord & 0xFFFF | highWord << 16);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Point ToPoint(this IntPtr value) => new Point(value.LoWord(), value.HiWord());
