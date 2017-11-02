@@ -34,8 +34,8 @@
   <ItemGroup>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
-    <Reference Include="Sakuno.Base, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>$(SolutionDir)packages\Sakuno.Base.0.2.0\lib\net46\Sakuno.Base.dll</HintPath>
+    <Reference Include="Sakuno.Base, Version=0.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>$(SolutionDir)packages\Sakuno.Base.0.3.0\lib\net46\Sakuno.Base.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

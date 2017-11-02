@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
-  <metadata>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata minClientVersion="2.12">
     <id>$id$</id>
     <version>$version$</version>
     <title>$title$</title>
@@ -12,7 +12,7 @@
     <description>$description$</description>
     <copyright>$copyright$</copyright>
     <dependencies>
-      <dependency id="Sakuno.Base" version="0.2.0" />
+      <dependency id="Sakuno.Base" version="0.3.0" />
     </dependencies>
   </metadata>
 </package>
