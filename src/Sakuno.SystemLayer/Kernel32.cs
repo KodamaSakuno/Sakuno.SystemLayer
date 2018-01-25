@@ -72,6 +72,11 @@ namespace Sakuno.SystemLayer
             [DllImport(DllName, SetLastError = true)]
             [return: MarshalAs(UnmanagedType.Bool)]
             public static extern bool FreeConsole();
+
+            [DllImport(DllName, CharSet = CharSet.Unicode)]
+            public static extern int RegisterApplicationRestart(string pwzCommandline, NativeEnums.APP_RESTART_FLAGS dwFlags);
+            [DllImport(DllName)]
+            public static extern void UnregisterApplicationRestart();
         }
     }
 }

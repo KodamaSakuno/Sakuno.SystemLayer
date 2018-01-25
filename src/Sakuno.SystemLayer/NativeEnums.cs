@@ -481,5 +481,15 @@ namespace Sakuno.SystemLayer
             SERVICE_INACTIVE,
             SERVICE_STATE_ALL,
         }
+
+        [Flags]
+        public enum APP_RESTART_FLAGS
+        {
+            RESTART_NONE,
+            RESTART_NO_CRASH = 1,
+            RESTART_NO_HANG = 2,
+            RESTART_NO_PATCH = 4,
+            RESTART_NO_REBOOT = 8,
+        }
     }
 }
