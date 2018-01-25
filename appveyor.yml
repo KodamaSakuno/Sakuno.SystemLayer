@@ -14,8 +14,8 @@ before_build:
 build:
   project: Sakuno.SystemLayer.sln
   verbosity: minimal
-after_build:
-- cmd: nuget pack src\Sakuno.SystemLayer\Sakuno.SystemLayer.csproj -Properties "Configuration=Release;Platform=AnyCPU"
+after_test:
+- ps: Move-Item artifacts\$($env:configuration)\*.nupkg .
 artifacts:
 - path: '*.nupkg'
   name: NuGet
