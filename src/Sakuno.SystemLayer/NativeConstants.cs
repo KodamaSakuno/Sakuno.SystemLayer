@@ -200,6 +200,7 @@ namespace Sakuno.SystemLayer
             WM_XBUTTONUP = 0x020C,
             WM_XBUTTONDBLCLK = 0x020D,
             WM_MOUSELAST = 0x020D,
+            WM_MOUSEHWHEEL = 0x020E,
             WM_PARENTNOTIFY = 0x0210,
             WM_ENTERMENULOOP = 0x0211,
             WM_EXITMENULOOP = 0x0212,
