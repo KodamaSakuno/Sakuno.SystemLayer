@@ -88,6 +88,11 @@ namespace Sakuno.SystemLayer
             SWP_ASYNCWINDOWPOS = 0x4000,
 
             SWP_NOSIZEORMOVE = SWP_NOSIZE | SWP_NOMOVE,
+
+            SWP_NOCLIENTSIZE = 0x0800,
+            SWP_NOCLIENTMOVE = 0x1000,
+
+            SWP_STATECHANGED = 0x8000,
         }
 
         [Flags]
