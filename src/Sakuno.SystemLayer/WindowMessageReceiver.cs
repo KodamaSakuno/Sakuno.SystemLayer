@@ -3,7 +3,7 @@ using System.Windows.Interop;
 
 namespace Sakuno.SystemLayer
 {
-    public class WindowMessageReceiver
+    public sealed class WindowMessageReceiver
     {
         public static WindowMessageReceiver Instance { get; } = new WindowMessageReceiver();
 
