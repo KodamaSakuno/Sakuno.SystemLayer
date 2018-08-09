@@ -324,7 +324,7 @@ namespace Sakuno.SystemLayer
             public string pszSpec;
         }
 
-        [StructLayout(LayoutKind.Sequential)]
+        [StructLayout(LayoutKind.Sequential, Pack = 4)]
         internal struct TASKDIALOGCONFIG
         {
             public int cbSize;
@@ -334,7 +334,7 @@ namespace Sakuno.SystemLayer
             public TaskDialogCommonButtons dwCommonButtons;
             [MarshalAs(UnmanagedType.LPWStr)]
             public string pszWindowTitle;
-            public TaskDialogIcon hMainIcon;
+            public IntPtr hMainIcon;
             [MarshalAs(UnmanagedType.LPWStr)]
             public string pszMainInstruction;
             [MarshalAs(UnmanagedType.LPWStr)]
@@ -353,7 +353,7 @@ namespace Sakuno.SystemLayer
             public string pszExpandedControlText;
             [MarshalAs(UnmanagedType.LPWStr)]
             public string pszCollapsedControlText;
-            public TaskDialogIcon hFooterIcon;
+            public IntPtr hFooterIcon;
             [MarshalAs(UnmanagedType.LPWStr)]
             public string pszFooter;
             public NativeDelegates.TaskDialogCallbackProc pfCallback;
@@ -361,7 +361,7 @@ namespace Sakuno.SystemLayer
             public int cxWidth;
         }
 
-        [StructLayout(LayoutKind.Sequential)]
+        [StructLayout(LayoutKind.Sequential, Pack = 4)]
         internal struct TASKDIALOG_BUTTON
         {
             public int nButtonID;

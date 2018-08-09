@@ -361,8 +361,8 @@ namespace Sakuno.SystemLayer.Dialogs
 
                     hwndParent = _ownerWindowHandle,
 
-                    hMainIcon = _icon,
-                    hFooterIcon = _footerIcon,
+                    hMainIcon = (IntPtr)_icon,
+                    hFooterIcon = (IntPtr)_footerIcon,
 
                     pszWindowTitle = _caption,
                     pszMainInstruction = _instruction,
