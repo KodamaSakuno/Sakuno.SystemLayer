@@ -144,12 +144,12 @@ namespace Sakuno.SystemLayer.Dialogs
                 if (_filenames.Count == 0)
                     throw new InvalidOperationException();
 
-                var rResult = _filenames[0];
+                var result = _filenames[0];
 
                 if (!DefaultExtension.IsNullOrEmpty())
-                    rResult = Path.ChangeExtension(rResult, DefaultExtension);
+                    result = Path.ChangeExtension(result, DefaultExtension);
 
-                return rResult;
+                return result;
             }
         }
 
@@ -250,7 +250,7 @@ namespace Sakuno.SystemLayer.Dialogs
             if (!_defaultFilename.IsNullOrEmpty())
                 _dialog.SetFileName(_defaultFilename);
 
-            if ((options & NativeEnums.FILEOPENDIALOGOPTIONS.FOS_PICKFOLDERS) == 0 && !_isFileTypesSet && FileTypes.Count > 0)
+            if (!options.Has(NativeEnums.FILEOPENDIALOGOPTIONS.FOS_PICKFOLDERS) && !_isFileTypesSet && FileTypes.Count > 0)
             {
                 _dialog.SetFileTypes(FileTypes.Count, _fileTypes.ToFilterSpec());
                 _isFileTypesSet = true;

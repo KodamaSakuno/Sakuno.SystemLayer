@@ -74,10 +74,7 @@ namespace Sakuno.SystemLayer.Dialogs
 
         protected override void ProcessResult()
         {
-            var item = _dialog.GetResult();
-
-            if (item == null)
-                throw new InvalidOperationException("Save with null item");
+            var item = _dialog.GetResult() ?? throw new InvalidOperationException("Saving with null item.");
 
             _filenames.Add(GetFilenameFromShellItem(item));
         }

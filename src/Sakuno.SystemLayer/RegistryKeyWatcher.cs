@@ -101,7 +101,7 @@ namespace Sakuno.SystemLayer
             if (_key == null)
                 return;
 
-            var watchSubTree = (NotifyFilter & RegistryNotifyFilter.WatchSubTree) != 0;
+            var watchSubTree = NotifyFilter.Has(RegistryNotifyFilter.WatchSubTree);
             var notifyFilter = NotifyFilter & ~RegistryNotifyFilter.WatchSubTree;
 
             var result = NativeMethods.AdvApi32.RegNotifyChangeKeyValue(_key.Handle, watchSubTree, notifyFilter, _waitEvent.SafeWaitHandle, true);

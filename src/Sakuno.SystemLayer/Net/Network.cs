@@ -40,9 +40,9 @@ namespace Sakuno.SystemLayer.Net
                 string propertyName;
 
                 var connectivity = Connectivity;
-                if ((connectivity & ConnectivityStates.IPv4Internet) != 0 || (connectivity & ConnectivityStates.IPv4LocalNetwork) != 0)
+                if (connectivity.Has(ConnectivityStates.IPv4Internet | ConnectivityStates.IPv4LocalNetwork))
                     propertyName = "NA_InternetConnectivityV4";
-                else if ((connectivity & ConnectivityStates.IPv6Internet) != 0 || (connectivity & ConnectivityStates.IPv6LocalNetwork) != 0)
+                else if (connectivity.Has(ConnectivityStates.IPv6Internet | ConnectivityStates.IPv6LocalNetwork))
                     propertyName = "NA_InternetConnectivityV6";
                 else
                     return false;
@@ -51,7 +51,7 @@ namespace Sakuno.SystemLayer.Net
                 {
                     ((NativeInterfaces.IPropertyBag)_network).Read(propertyName, propertyVariant);
 
-                    return ((NativeEnums.NLM_INTERNET_CONNECTIVITY)propertyVariant.Int32Value & NativeEnums.NLM_INTERNET_CONNECTIVITY.NLM_INTERNET_CONNECTIVITY_WEBHIJACK) != 0;
+                    return ((NativeEnums.NLM_INTERNET_CONNECTIVITY)propertyVariant.Int32Value).Has(NativeEnums.NLM_INTERNET_CONNECTIVITY.NLM_INTERNET_CONNECTIVITY_WEBHIJACK);
                 }
             }
         }

@@ -11,8 +11,10 @@ namespace Sakuno.SystemLayer.Dialogs
         IntPtr _nativeData;
         int _nativeDataElementCount;
 
-        public TaskDialogButtonCollection(TaskDialog owner) =>
+        public TaskDialogButtonCollection(TaskDialog owner)
+        {
             _owner = owner;
+        }
 
         public T GetButtonById(int id)
         {
@@ -34,7 +36,7 @@ namespace Sakuno.SystemLayer.Dialogs
                 if (button.Default)
                     return button;
 
-            return null;
+            return this[0];
         }
 
         public unsafe IntPtr GetNativeData()
@@ -59,20 +61,20 @@ namespace Sakuno.SystemLayer.Dialogs
 
         public unsafe void Cleanup()
         {
-            if (_nativeData != IntPtr.Zero)
+            if (_nativeData == IntPtr.Zero)
+                return;
+
+            var current = (NativeStructs.TASKDIALOG_BUTTON*)_nativeData;
+
+            for (var i = 0; i < _nativeDataElementCount; i++)
             {
-                var current = (NativeStructs.TASKDIALOG_BUTTON*)_nativeData;
+                Marshal.FreeHGlobal(current->pszButtonText);
 
-                for (var i = 0; i < _nativeDataElementCount; i++)
-                {
-                    Marshal.FreeHGlobal(current->pszButtonText);
-
-                    current++;
-                }
-
-                Marshal.FreeHGlobal(_nativeData);
-                _nativeData = IntPtr.Zero;
+                current++;
             }
+
+            Marshal.FreeHGlobal(_nativeData);
+            _nativeData = IntPtr.Zero;
         }
 
         protected override void InsertItem(int index, T item)

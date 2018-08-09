@@ -516,9 +516,9 @@ namespace Sakuno.SystemLayer.Dialogs
         }
         void OnDialogInitialization()
         {
-            if ((_options & NativeEnums.TASKDIALOG_FLAGS.TDF_SHOW_MARQUEE_PROGRESS_BAR) != 0)
+            if (_options.Has(NativeEnums.TASKDIALOG_FLAGS.TDF_SHOW_MARQUEE_PROGRESS_BAR))
                 SendMessage(NativeConstants.WindowMessage.TDM_SET_PROGRESS_BAR_MARQUEE, 1, 0);
-            else if ((_options & NativeEnums.TASKDIALOG_FLAGS.TDF_SHOW_PROGRESS_BAR) != 0)
+            else if (_options.Has(NativeEnums.TASKDIALOG_FLAGS.TDF_SHOW_PROGRESS_BAR))
             {
                 SendMessage(NativeConstants.WindowMessage.TDM_SET_PROGRESS_BAR_RANGE, 0, _progressBar.Maximum << 16 | _progressBar.Minimum);
                 SendMessage(NativeConstants.WindowMessage.TDM_SET_PROGRESS_BAR_STATE, (int)_progressBar.State, 0);
