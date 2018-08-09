@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 
 namespace Sakuno.SystemLayer.Audio
 {
-    public class AudioSession : DisposableObject
+    public sealed class AudioSession : DisposableObject
     {
         static Guid _emptyGuid = Guid.Empty;
 

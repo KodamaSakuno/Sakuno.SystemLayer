@@ -2,7 +2,7 @@
 
 namespace Sakuno.SystemLayer.Audio
 {
-    public class AudioDevice : DisposableObject
+    public sealed class AudioDevice : DisposableObject
     {
         NativeInterfaces.IMMDevice _device;
 

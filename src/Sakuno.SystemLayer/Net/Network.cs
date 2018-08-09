@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 
 namespace Sakuno.SystemLayer.Net
 {
-    public class Network : DisposableObject
+    public sealed class Network : DisposableObject
     {
         NativeInterfaces.INetwork _network;
 
