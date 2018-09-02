@@ -229,6 +229,16 @@ namespace Sakuno.SystemLayer
 
             [DllImport(DllName, SetLastError = true)]
             public static extern int SetWindowCompositionAttribute(IntPtr hwnd, ref NativeStructs.WINDOWCOMPOSITIONATTRIBDATA pAttrData);
+
+            [DllImport(DllName, CharSet = CharSet.Unicode)]
+            public static extern IntPtr DefWindowProcW(IntPtr hWnd, int Msg, IntPtr wParam, IntPtr lParam);
+
+            [DllImport(DllName, SetLastError = true)]
+            [return: MarshalAs(UnmanagedType.Bool)]
+            public static extern bool EnableMouseInPointer(bool fEnable);
+            [DllImport(DllName)]
+            [return: MarshalAs(UnmanagedType.Bool)]
+            public static extern bool IsMouseInPointerEnabled();
         }
     }
 }
