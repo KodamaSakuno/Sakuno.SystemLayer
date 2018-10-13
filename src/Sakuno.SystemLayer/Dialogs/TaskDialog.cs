@@ -561,18 +561,13 @@ namespace Sakuno.SystemLayer.Dialogs
         void UpdateFooterCheckbox(bool instruction) =>
             SendMessage(NativeConstants.WindowMessage.TDM_CLICK_VERIFICATION, instruction ? 1 : 0, 1);
 
-        internal void UpdateProgressBarState(TaskDialogProgressBarState state)
-        {
-            //if (state == TaskDialogProgressBarState.Marquee)
-            //    SendMessage(NativeConstants.WindowMessage.TDM_SET_PROGRESS_BAR_MARQUEE, 1, 0);
-            //else
-            //{
-            //    SendMessage(NativeConstants.WindowMessage.TDM_SET_PROGRESS_BAR_MARQUEE, 0, 0);
-            //}
+        internal void UpdateProgressBarState(TaskDialogProgressBarState state) =>
             SendMessage(NativeConstants.WindowMessage.TDM_SET_PROGRESS_BAR_STATE, (int)state, 0);
-        }
         internal void UpdateProgressBarValue(int value) =>
             SendMessage(NativeConstants.WindowMessage.TDM_SET_PROGRESS_BAR_POS, value, 0);
+
+        internal void UpdateMarqueeProgressBarDisplay(bool enabled) =>
+            SendMessage(NativeConstants.WindowMessage.TDM_SET_PROGRESS_BAR_MARQUEE, enabled ? 1 : 0, 0);
 
         internal void UpdateElevationIcon(int id, bool enabled) =>
             SendMessage(NativeConstants.WindowMessage.TDM_SET_BUTTON_ELEVATION_REQUIRED_STATE, id, enabled ? 1 : 0);

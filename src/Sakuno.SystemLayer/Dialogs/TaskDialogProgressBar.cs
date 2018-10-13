@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Sakuno.SystemLayer.Dialogs
+﻿namespace Sakuno.SystemLayer.Dialogs
 {
     public class TaskDialogProgressBar
     {
@@ -18,8 +12,15 @@ namespace Sakuno.SystemLayer.Dialogs
             {
                 if (_state != value)
                 {
+                    if (_state == TaskDialogProgressBarState.Marquee)
+                        Owner?.UpdateMarqueeProgressBarDisplay(false);
+
                     _state = value;
-                    Owner?.UpdateProgressBarState(value);
+
+                    if (value != TaskDialogProgressBarState.Marquee)
+                        Owner?.UpdateProgressBarState(value);
+                    else
+                        Owner?.UpdateMarqueeProgressBarDisplay(true);
                 }
             }
         }
