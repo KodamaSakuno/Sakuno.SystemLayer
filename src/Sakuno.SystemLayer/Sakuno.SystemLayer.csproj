@@ -10,7 +10,7 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <OutputPath>$(SolutionDir)artifacts\$(Configuration)\</OutputPath>
     <PackageId>Sakuno.SystemLayer</PackageId>
-    <Version>0.3.1</Version>
+    <Version>0.3.2</Version>
     <Authors>Kodama Sakuno</Authors>
     <Description>Sakuno's Win32 APIs wrapper</Description>
     <Product>Sakuno.SystemLayer</Product>
