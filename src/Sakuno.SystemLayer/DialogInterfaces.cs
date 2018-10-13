@@ -34,7 +34,7 @@ namespace Sakuno.SystemLayer
             void AddPlace(IShellItem psi, CommonFileDialogCustomPlaceLocation fdap);
             void SetDefaultExtension([MarshalAs(UnmanagedType.LPWStr)] string pszDefaultExtension);
             void Close(int hr);
-            void SetClientGuid(ref Guid guid);
+            void SetClientGuid(in Guid guid);
             void ClearClientData();
             void SetFilter(IntPtr pFilter);
         }
@@ -67,7 +67,7 @@ namespace Sakuno.SystemLayer
             void AddPlace(IShellItem psi, CommonFileDialogCustomPlaceLocation fdap);
             void SetDefaultExtension([MarshalAs(UnmanagedType.LPWStr)] string pszDefaultExtension);
             void Close(int hr);
-            void SetClientGuid(ref Guid guid);
+            void SetClientGuid(in Guid guid);
             void ClearClientData();
             void SetFilter(IntPtr pFilter);
             IShellItemArray GetResults();
@@ -102,7 +102,7 @@ namespace Sakuno.SystemLayer
             void AddPlace(IShellItem psi, CommonFileDialogCustomPlaceLocation fdap);
             void SetDefaultExtension([MarshalAs(UnmanagedType.LPWStr)] string pszDefaultExtension);
             void Close(int hr);
-            void SetClientGuid(ref Guid guid);
+            void SetClientGuid(in Guid guid);
             void ClearClientData();
             void SetFilter(IntPtr pFilter);
             void SetSaveAsItem(IShellItem psi);

@@ -25,8 +25,7 @@ namespace Sakuno.SystemLayer.Audio
 
             DefaultDevice = new AudioDevice(device);
 
-            var audioSessionManagerGuid = typeof(NativeInterfaces.IAudioSessionManager2).GUID;
-            var obj = device.Activate(ref audioSessionManagerGuid, 0, IntPtr.Zero);
+            var obj = device.Activate(typeof(NativeInterfaces.IAudioSessionManager2).GUID, 0, IntPtr.Zero);
 
             _sessionManager = (NativeInterfaces.IAudioSessionManager2)obj;
 

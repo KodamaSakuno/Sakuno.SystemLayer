@@ -16,7 +16,7 @@ namespace Sakuno.SystemLayer.Audio
             _owner.OnSessionDisconnected(disconnectReason);
         }
 
-        public void OnSimpleVolumeChanged(float volume, bool mute, ref Guid eventContext)
+        public void OnSimpleVolumeChanged(float volume, bool mute, in Guid eventContext)
         {
             _owner.OnVolumeChanged(new AudioSessionVolumeChangedEventArgs(mute, (int)(volume * 100)));
         }
@@ -26,9 +26,9 @@ namespace Sakuno.SystemLayer.Audio
             _owner.OnStateChanged(state);
         }
 
-        public void OnChannelVolumeChanged(uint channelCount, IntPtr newChannelVolumeArray, uint changedChannel, ref Guid eventContext) { }
-        public void OnDisplayNameChanged(string newDisplayName, ref Guid eventContext) { }
-        public void OnGroupingParamChanged(ref Guid newGroupingParam, ref Guid eventContext) { }
-        public void OnIconPathChanged(string newIconPath, ref Guid eventContext) { }
+        public void OnChannelVolumeChanged(uint channelCount, IntPtr newChannelVolumeArray, uint changedChannel, in Guid eventContext) { }
+        public void OnDisplayNameChanged(string newDisplayName, in Guid eventContext) { }
+        public void OnGroupingParamChanged(in Guid newGroupingParam, in Guid eventContext) { }
+        public void OnIconPathChanged(string newIconPath, in Guid eventContext) { }
     }
 }

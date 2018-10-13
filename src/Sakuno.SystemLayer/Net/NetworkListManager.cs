@@ -32,14 +32,9 @@ namespace Sakuno.SystemLayer.Net
 
             var connectionPointContainer = (NativeInterfaces.IConnectionPointContainer)_manager;
 
-            var guid = typeof(NativeInterfaces.INetworkListManagerEvents).GUID;
-            _eventSinks.NLMEventsCookie = connectionPointContainer.FindConnectionPoint(ref guid).Advise(_eventSinks);
-
-            guid = typeof(NativeInterfaces.INetworkEvents).GUID;
-            _eventSinks.NetworkEventsCookie = connectionPointContainer.FindConnectionPoint(ref guid).Advise(_eventSinks);
-
-            guid = typeof(NativeInterfaces.INetworkConnectionEvents).GUID;
-            _eventSinks.ConnectionEventsCookie = connectionPointContainer.FindConnectionPoint(ref guid).Advise(_eventSinks);
+            _eventSinks.NLMEventsCookie = connectionPointContainer.FindConnectionPoint(typeof(NativeInterfaces.INetworkListManagerEvents).GUID).Advise(_eventSinks);
+            _eventSinks.NetworkEventsCookie = connectionPointContainer.FindConnectionPoint(typeof(NativeInterfaces.INetworkEvents).GUID).Advise(_eventSinks);
+            _eventSinks.ConnectionEventsCookie = connectionPointContainer.FindConnectionPoint(typeof(NativeInterfaces.INetworkConnectionEvents).GUID).Advise(_eventSinks);
         }
 
         public static Network GetNetwork(Guid id) => new Network(_manager.GetNetwork(id));

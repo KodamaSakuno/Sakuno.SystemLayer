@@ -12,7 +12,7 @@ namespace Sakuno.SystemLayer
         internal interface IMMDevice
         {
             [return: MarshalAs(UnmanagedType.IUnknown)]
-            object Activate(ref Guid iid, uint dwClsCtx, IntPtr pActivationParams);
+            object Activate(in Guid iid, uint dwClsCtx, IntPtr pActivationParams);
             IPropertyStore OpenPropertyStore(NativeConstants.STGM stgmAccess);
             [return: MarshalAs(UnmanagedType.LPWStr)]
             string GetId();
@@ -61,9 +61,9 @@ namespace Sakuno.SystemLayer
         [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
         internal interface ISimpleAudioVolume
         {
-            void SetMasterVolume(float fLevel, ref Guid EventContext);
+            void SetMasterVolume(float fLevel, in Guid EventContext);
             float GetMasterVolume();
-            void SetMute(bool bMute, ref Guid EventContext);
+            void SetMute(bool bMute, in Guid EventContext);
             bool GetMute();
         }
 
@@ -72,16 +72,16 @@ namespace Sakuno.SystemLayer
         [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
         internal interface IAudioSessionManager
         {
-            IAudioSessionControl GetAudioSessionControl(ref Guid AudioSessionGuid, uint StreamFlags);
-            ISimpleAudioVolume GetSimpleAudioVolume(ref Guid AudioSessionGuid, uint StreamFlags);
+            IAudioSessionControl GetAudioSessionControl(in Guid AudioSessionGuid, uint StreamFlags);
+            ISimpleAudioVolume GetSimpleAudioVolume(in Guid AudioSessionGuid, uint StreamFlags);
         }
         [ComImport]
         [Guid("77AA99A0-1BD6-484F-8BC7-2C654C9A9B6F")]
         [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
         internal interface IAudioSessionManager2
         {
-            IAudioSessionControl GetAudioSessionControl(ref Guid AudioSessionGuid, uint StreamFlags);
-            ISimpleAudioVolume GetSimpleAudioVolume(ref Guid AudioSessionGuid, uint StreamFlags);
+            IAudioSessionControl GetAudioSessionControl(in Guid AudioSessionGuid, uint StreamFlags);
+            ISimpleAudioVolume GetSimpleAudioVolume(in Guid AudioSessionGuid, uint StreamFlags);
             IAudioSessionEnumerator GetSessionEnumerator();
             void RegisterSessionNotification(IAudioSessionNotification SessionNotification);
             void UnregisterSessionNotification(IAudioSessionNotification SessionNotification);
@@ -116,9 +116,9 @@ namespace Sakuno.SystemLayer
             void SetDisplayName([MarshalAs(UnmanagedType.LPWStr)] string Value, Guid EventContext);
             [return: MarshalAs(UnmanagedType.LPWStr)]
             string GetIconPath();
-            void SetIconPath([MarshalAs(UnmanagedType.LPWStr)] string Value, ref Guid EventContext);
+            void SetIconPath([MarshalAs(UnmanagedType.LPWStr)] string Value, in Guid EventContext);
             Guid GetGroupingParam();
-            void SetGroupingParam(ref Guid Override, ref Guid EventContext);
+            void SetGroupingParam(in Guid Override, in Guid EventContext);
             void RegisterAudioSessionNotification(IAudioSessionEvents NewNotifications);
             void UnregisterAudioSessionNotification(IAudioSessionEvents NewNotifications);
         }
@@ -130,12 +130,12 @@ namespace Sakuno.SystemLayer
             AudioSessionState GetState();
             [return: MarshalAs(UnmanagedType.LPWStr)]
             string GetDisplayName();
-            void SetDisplayName([MarshalAs(UnmanagedType.LPWStr)] string Value, ref Guid EventContext);
+            void SetDisplayName([MarshalAs(UnmanagedType.LPWStr)] string Value, in Guid EventContext);
             [return: MarshalAs(UnmanagedType.LPWStr)]
             string GetIconPath();
-            void SetIconPath([MarshalAs(UnmanagedType.LPWStr)] string Value, ref Guid EventContext);
+            void SetIconPath([MarshalAs(UnmanagedType.LPWStr)] string Value, in Guid EventContext);
             Guid GetGroupingParam();
-            void SetGroupingParam(ref Guid Override, ref Guid EventContext);
+            void SetGroupingParam(in Guid Override, in Guid EventContext);
             void RegisterAudioSessionNotification(IAudioSessionEvents NewNotifications);
             void UnregisterAudioSessionNotification(IAudioSessionEvents NewNotifications);
             [return: MarshalAs(UnmanagedType.LPWStr)]
@@ -152,11 +152,11 @@ namespace Sakuno.SystemLayer
         [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
         internal interface IAudioSessionEvents
         {
-            void OnDisplayNameChanged([MarshalAs(UnmanagedType.LPWStr)] string NewDisplayName, ref Guid EventContext);
-            void OnIconPathChanged([MarshalAs(UnmanagedType.LPWStr)] string NewIconPath, ref Guid EventContext);
-            void OnSimpleVolumeChanged(float NewVolume, bool NewMute, ref Guid EventContext);
-            void OnChannelVolumeChanged(uint ChannelCount, IntPtr NewChannelVolumeArray, uint ChangedChannel, ref Guid EventContext);
-            void OnGroupingParamChanged(ref Guid NewGroupingParam, ref Guid EventContext);
+            void OnDisplayNameChanged([MarshalAs(UnmanagedType.LPWStr)] string NewDisplayName, in Guid EventContext);
+            void OnIconPathChanged([MarshalAs(UnmanagedType.LPWStr)] string NewIconPath, in Guid EventContext);
+            void OnSimpleVolumeChanged(float NewVolume, bool NewMute, in Guid EventContext);
+            void OnChannelVolumeChanged(uint ChannelCount, IntPtr NewChannelVolumeArray, uint ChangedChannel, in Guid EventContext);
+            void OnGroupingParamChanged(in Guid NewGroupingParam, in Guid EventContext);
             void OnStateChanged(AudioSessionState NewState);
             void OnSessionDisconnected(AudioSessionDisconnectReason DisconnectReason);
         }

@@ -5,8 +5,6 @@ namespace Sakuno.SystemLayer.Audio
 {
     public sealed class AudioSession : DisposableObject
     {
-        static Guid _emptyGuid = Guid.Empty;
-
         NativeInterfaces.IAudioSessionControl2 _session;
         NativeInterfaces.ISimpleAudioVolume _simpleAudioVolume;
 
@@ -21,18 +19,18 @@ namespace Sakuno.SystemLayer.Audio
         public int Volume
         {
             get => (int)(_simpleAudioVolume.GetMasterVolume() * 100);
-            set => _simpleAudioVolume.SetMasterVolume((float)(value / 100.0), ref _emptyGuid);
+            set => _simpleAudioVolume.SetMasterVolume((float)(value / 100.0), Guid.Empty);
         }
         public bool IsMute
         {
             get => _simpleAudioVolume.GetMute();
-            set => _simpleAudioVolume.SetMute(value, ref _emptyGuid);
+            set => _simpleAudioVolume.SetMute(value, Guid.Empty);
         }
 
         public string DisplayName
         {
             get => _session.GetDisplayName();
-            set => _session.SetDisplayName(value, ref _emptyGuid);
+            set => _session.SetDisplayName(value, Guid.Empty);
         }
 
         public event EventHandler<AudioSessionDisconnectReason> Disconnected;

@@ -13,7 +13,7 @@ namespace Sakuno.SystemLayer
         [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
         public interface IUnknown
         {
-            IntPtr QueryInterface(ref Guid riid, ref IntPtr pVoid);
+            IntPtr QueryInterface(in Guid riid, ref IntPtr pVoid);
             ulong AddRef();
             ulong Release();
         }
@@ -32,7 +32,7 @@ namespace Sakuno.SystemLayer
         public interface IServiceProvider
         {
             [return: MarshalAs(UnmanagedType.Interface)]
-            object QueryService(ref Guid guidService, ref Guid riid);
+            object QueryService(in Guid guidService, in Guid riid);
         }
 
         [ComImport]
@@ -72,7 +72,7 @@ namespace Sakuno.SystemLayer
             IntPtr GetSortDescriptionLabel(bool fDescending);
             NativeConstants.PROPDESC_AGGREGATION_TYPE GetAggregationType();
             void GetConditionType(out NativeConstants.PROPDESC_CONDITION_TYPE pcontype, out NativeConstants.CONDITION_OPERATION popDefault);
-            IPropertyEnumTypeList GetEnumTypeList(ref Guid riid);
+            IPropertyEnumTypeList GetEnumTypeList(in Guid riid);
             void CoerceToCanonicalValue(NativeStructs.PROPVARIANT propvar);
             [return: MarshalAs(UnmanagedType.LPWStr)]
             string FormatForDisplay(NativeStructs.PROPVARIANT propvar, NativeEnums.PROPDESC_FORMAT_FLAGS pdfFlags);
@@ -85,7 +85,7 @@ namespace Sakuno.SystemLayer
         public interface IPropertyDescriptionList
         {
             int GetCount();
-            IPropertyDescription GetAt(int iElem, ref Guid riid);
+            IPropertyDescription GetAt(int iElem, in Guid riid);
         }
 
         [ComImport]
@@ -107,8 +107,8 @@ namespace Sakuno.SystemLayer
         public interface IPropertyEnumTypeList
         {
             int GetCount();
-            IPropertyDescription GetAt(int iElem, ref Guid riid);
-            object GetConditionAt(int nIndex, ref Guid riid);
+            IPropertyDescription GetAt(int iElem, in Guid riid);
+            object GetConditionAt(int nIndex, in Guid riid);
             int FindMatchingIndex(NativeStructs.PROPVARIANT propvarCmp);
         }
 
@@ -127,7 +127,7 @@ namespace Sakuno.SystemLayer
         public interface IConnectionPointContainer
         {
             IEnumerable EnumConnectionPoints();
-            IConnectionPoint FindConnectionPoint(ref Guid riid);
+            IConnectionPoint FindConnectionPoint(in Guid riid);
         }
 
         [ComImport]
@@ -136,7 +136,7 @@ namespace Sakuno.SystemLayer
         public interface IConnectionPoint
         {
             Guid GetConnectionInterface();
-            IConnectionPointContainer GetConnectionPointContainer(ref Guid riid);
+            IConnectionPointContainer GetConnectionPointContainer(in Guid riid);
             uint Advise([MarshalAs(UnmanagedType.IUnknown)] object pUnkSink);
             void Unadvise(uint dwCookie);
             IEnumerable EnumConnections();

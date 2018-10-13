@@ -23,13 +23,8 @@ namespace Sakuno.SystemLayer
 
             var handle = WindowMessageReceiver.Instance.Handle;
 
-            Guid guid;
-
-            guid = NativeGuids.GUID_BATTERY_PERCENTAGE_REMAINING;
-            _batteryPercentageNotification = NativeMethods.User32.RegisterPowerSettingNotification(handle, ref guid, 0);
-
-            guid = NativeGuids.GUID_ACDC_POWER_SOURCE;
-            _powerSourceNotification = NativeMethods.User32.RegisterPowerSettingNotification(handle, ref guid, 0);
+            _batteryPercentageNotification = NativeMethods.User32.RegisterPowerSettingNotification(handle, NativeGuids.GUID_BATTERY_PERCENTAGE_REMAINING, 0);
+            _powerSourceNotification = NativeMethods.User32.RegisterPowerSettingNotification(handle, NativeGuids.GUID_ACDC_POWER_SOURCE, 0);
 
             WindowMessageReceiver.Instance.AddHook(WndProc);
 

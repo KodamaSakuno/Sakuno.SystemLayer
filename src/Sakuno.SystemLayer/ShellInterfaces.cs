@@ -16,12 +16,12 @@ namespace Sakuno.SystemLayer
         {
             void ParseDisplayName(IntPtr hwnd, IBindCtx pbc, [MarshalAs(UnmanagedType.LPWStr)] string pszDisplayName, ref uint pchEaten, IntPtr ppidl, ref uint pdwAttributes);
             IEnumerable EnumObjects(IntPtr hwnd, NativeEnums.SHCONTF grfFlags);
-            IShellFolder BindToObject(IntPtr pidl, IntPtr pbc, ref Guid riid);
-            IntPtr BindToStorage(ref IntPtr pidl, IBindCtx pbc, ref Guid riid);
+            IShellFolder BindToObject(IntPtr pidl, IntPtr pbc, in Guid riid);
+            IntPtr BindToStorage(ref IntPtr pidl, IBindCtx pbc, in Guid riid);
             void CompareIDs(IntPtr lParam, ref IntPtr pidl1, ref IntPtr pidl2);
-            IntPtr CreateViewObject(IntPtr hwndOwner, ref Guid riid);
+            IntPtr CreateViewObject(IntPtr hwndOwner, in Guid riid);
             void GetAttributesOf(uint cidl, IntPtr apidl, ref uint rgfInOut);
-            IntPtr GetUIObjectOf(IntPtr hwndOwner, uint cidl, IntPtr apidl, ref Guid riid, ref uint rgfReserved);
+            IntPtr GetUIObjectOf(IntPtr hwndOwner, uint cidl, IntPtr apidl, in Guid riid, ref uint rgfReserved);
             [return: MarshalAs(UnmanagedType.LPWStr)]
             string GetDisplayNameOf(ref IntPtr pidl, uint uFlags);
             IntPtr SetNameOf(IntPtr hwnd, ref IntPtr pidl, [MarshalAs(UnmanagedType.LPWStr)] string pszName, uint uFlags);
@@ -32,7 +32,7 @@ namespace Sakuno.SystemLayer
         [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
         public interface IShellItem
         {
-            IShellFolder BindToHandler(IntPtr pbc, ref Guid bhid, ref Guid riid);
+            IShellFolder BindToHandler(IntPtr pbc, in Guid bhid, in Guid riid);
             IShellItem GetParent();
             [return: MarshalAs(UnmanagedType.LPWStr)]
             string GetDisplayName(NativeEnums.SIGDN sigdnName);
@@ -45,9 +45,9 @@ namespace Sakuno.SystemLayer
         [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
         public interface IShellItemArray
         {
-            IntPtr BindToHandler(IntPtr pbc, ref Guid bhid, ref Guid riid);
-            IntPtr GetPropertyStore(int flags, ref Guid riid);
-            IntPtr GetPropertyDescriptionList(ref NativeStructs.PROPERTYKEY keyType, ref Guid riid);
+            IntPtr BindToHandler(IntPtr pbc, in Guid bhid, in Guid riid);
+            IntPtr GetPropertyStore(int flags, in Guid riid);
+            IntPtr GetPropertyDescriptionList(ref NativeStructs.PROPERTYKEY keyType, in Guid riid);
             NativeEnums.SFGAO GetAttributes(NativeConstants.SIATTRIBFLAGS dwAttribFlags, NativeEnums.SFGAO sfgaoMask);
             int GetCount();
             IShellItem GetItemAt(int dwIndex);

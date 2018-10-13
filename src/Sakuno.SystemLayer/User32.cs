@@ -145,7 +145,7 @@ namespace Sakuno.SystemLayer
             public static extern bool ScreenToClient(IntPtr hWnd, ref NativeStructs.POINT lpPoint);
 
             [DllImport(DllName, SetLastError = true)]
-            public static extern IntPtr RegisterPowerSettingNotification(IntPtr hRecipient, ref Guid PowerSettingGuid, int Flags);
+            public static extern IntPtr RegisterPowerSettingNotification(IntPtr hRecipient, in Guid PowerSettingGuid, int Flags);
             [DllImport(DllName, SetLastError = true)]
             [return: MarshalAs(UnmanagedType.Bool)]
             public static extern bool UnregisterPowerSettingNotification(IntPtr Handle);
