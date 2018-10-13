@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Runtime.InteropServices;
 
@@ -15,6 +15,13 @@ namespace Sakuno.SystemLayer
 
             [DllImport(DllName)]
             public static extern int SHGetFileInfoW([MarshalAs(UnmanagedType.LPWStr)] string pszPath, FileAttributes dwFileAttributes, out NativeStructs.SHFILEINFO psfi, int cbFileInfo, NativeEnums.SHGFI flags);
+
+            [DllImport(DllName, PreserveSig = false)]
+            public static extern void SHParseDisplayName([MarshalAs(UnmanagedType.LPWStr)] string pszName, IntPtr pbc, out IntPtr ppidl, NativeEnums.SFGAO sfgaoIn, out NativeEnums.SFGAO psfgaoOut);
+
+            [DllImport(DllName)]
+            public static extern int SHOpenFolderAndSelectItems(IntPtr pidlFolder, int cidl, [MarshalAs(UnmanagedType.LPArray)] IntPtr[] apidl, int dwFlags);
+
         }
     }
 }
