@@ -13,8 +13,8 @@ namespace Sakuno.SystemLayer
         {
             [PreserveSig]
             int Show(IntPtr parent);
-            int SetFileTypes(int cFileTypes, [MarshalAs(UnmanagedType.LPArray)] NativeStructs.COMDLG_FILTERSPEC[] rgFilterSpec);
-            int SetFileTypeIndex(int iFileType);
+            void SetFileTypes(int cFileTypes, [MarshalAs(UnmanagedType.LPArray)] NativeStructs.COMDLG_FILTERSPEC[] rgFilterSpec);
+            void SetFileTypeIndex(int iFileType);
             int GetFileTypeIndex();
             uint Advise(IFileDialogEvents pfde);
             void Unadvise(uint dwCookie);
@@ -44,9 +44,10 @@ namespace Sakuno.SystemLayer
         [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
         internal interface IFileOpenDialog
         {
-            void Show(IntPtr parent);
-            int SetFileTypes(int cFileTypes, [MarshalAs(UnmanagedType.LPArray)] NativeStructs.COMDLG_FILTERSPEC[] rgFilterSpec);
-            int SetFileTypeIndex(int iFileType);
+            [PreserveSig]
+            int Show(IntPtr parent);
+            void SetFileTypes(int cFileTypes, [MarshalAs(UnmanagedType.LPArray)] NativeStructs.COMDLG_FILTERSPEC[] rgFilterSpec);
+            void SetFileTypeIndex(int iFileType);
             int GetFileTypeIndex();
             uint Advise(IFileDialogEvents pfde);
             void Unadvise(uint dwCookie);
@@ -78,9 +79,10 @@ namespace Sakuno.SystemLayer
         [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
         internal interface IFileSaveDialog
         {
-            void Show(IntPtr parent);
-            int SetFileTypes(int cFileTypes, [MarshalAs(UnmanagedType.LPArray)] NativeStructs.COMDLG_FILTERSPEC[] rgFilterSpec);
-            int SetFileTypeIndex(int iFileType);
+            [PreserveSig]
+            int Show(IntPtr parent);
+            void SetFileTypes(int cFileTypes, [MarshalAs(UnmanagedType.LPArray)] NativeStructs.COMDLG_FILTERSPEC[] rgFilterSpec);
+            void SetFileTypeIndex(int iFileType);
             int GetFileTypeIndex();
             uint Advise(IFileDialogEvents pfde);
             void Unadvise(uint dwCookie);

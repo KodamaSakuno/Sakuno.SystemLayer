@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 
@@ -327,9 +327,7 @@ namespace Sakuno.SystemLayer.Dialogs
             item.GetDisplayName(NativeEnums.SIGDN.SIGDN_DESKTOPABSOLUTEPARSING);
         internal static NativeInterfaces.IShellItem GetShellItemFromFilename(string filename)
         {
-            var guid = typeof(NativeInterfaces.IShellItem).GUID;
-
-            NativeMethods.Shell32.SHCreateItemFromParsingName(filename, IntPtr.Zero, ref guid, out var result);
+            NativeMethods.Shell32.SHCreateItemFromParsingName(filename, IntPtr.Zero, typeof(NativeInterfaces.IShellItem).GUID, out var result);
 
             return result;
         }
