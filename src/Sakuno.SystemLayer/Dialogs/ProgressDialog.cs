@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 
 namespace Sakuno.SystemLayer.Dialogs
 {
-    public class ProgressDialog : DisposableObject
+    public sealed class ProgressDialog : DisposableObject
     {
         NativeInterfaces.IProgressDialog _dialog = (NativeInterfaces.IProgressDialog)new NativeInterfaces.CProgressDialog();
 
@@ -234,7 +234,7 @@ namespace Sakuno.SystemLayer.Dialogs
         protected override void DisposeManagedResources() => Close();
         protected override void DisposeNativeResources() => Marshal.ReleaseComObject(_dialog);
 
-        protected void ThrowIfDialogShowing()
+        void ThrowIfDialogShowing()
         {
             if (_isShowing)
                 throw new InvalidOperationException("This property cannot be modified when the dialog is showing.");
