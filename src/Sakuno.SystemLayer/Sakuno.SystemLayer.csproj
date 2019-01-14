@@ -15,7 +15,7 @@
     <Description>Sakuno's Win32 APIs wrapper</Description>
     <Product>Sakuno.SystemLayer</Product>
     <Company>Kodama Sakuno</Company>
-    <Copyright>Copyright © 2017 Kodama Sakuno</Copyright>
+    <Copyright>Copyright © 2017-2019 Kodama Sakuno</Copyright>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/KodamaSakuno/Sakuno.SystemLayer</PackageProjectUrl>
