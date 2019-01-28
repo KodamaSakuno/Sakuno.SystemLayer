@@ -24,7 +24,7 @@ namespace Sakuno.SystemLayer.Audio
 
                 using (var propertyVariant = new NativeStructs.PROPVARIANT())
                 {
-                    properties.GetValue(ref propertyKey, propertyVariant);
+                    properties.GetValue(propertyKey, propertyVariant);
 
                     Name = propertyVariant.StringValue;
                 }
@@ -35,6 +35,6 @@ namespace Sakuno.SystemLayer.Audio
             }
         }
 
-        protected override void DisposeManagedResources() => Marshal.ReleaseComObject(_device);
+        protected override void DisposeNativeResources() => Marshal.ReleaseComObject(_device);
     }
 }

@@ -249,7 +249,7 @@ namespace Sakuno.SystemLayer
         }
 
         [StructLayout(LayoutKind.Sequential, Pack = 4)]
-        public struct PROPERTYKEY
+        public readonly struct PROPERTYKEY
         {
             public Guid FormatId { get; }
             public int PropertyId { get; }

@@ -42,8 +42,8 @@ namespace Sakuno.SystemLayer
         {
             int GetCount();
             NativeStructs.PROPERTYKEY GetAt(uint iProp);
-            void GetValue(ref NativeStructs.PROPERTYKEY key, NativeStructs.PROPVARIANT propvar);
-            void SetValue(ref NativeStructs.PROPERTYKEY key, NativeStructs.PROPVARIANT propvar);
+            void GetValue(in NativeStructs.PROPERTYKEY key, NativeStructs.PROPVARIANT propvar);
+            void SetValue(in NativeStructs.PROPERTYKEY key, NativeStructs.PROPVARIANT propvar);
             void Commit();
         }
 
