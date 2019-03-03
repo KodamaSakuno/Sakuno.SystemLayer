@@ -55,7 +55,7 @@ namespace Sakuno.SystemLayer
             NativeStructs.PROPERTYKEY GetPropertyKey();
             [return: MarshalAs(UnmanagedType.LPWStr)]
             string GetCanonicalName();
-            VarEnum GetPropertyType(out VarEnum pvartype);
+            NativeConstants.VARTYPE GetPropertyType();
             [return: MarshalAs(UnmanagedType.LPWStr)]
             string GetDisplayName();
             [return: MarshalAs(UnmanagedType.LPWStr)]

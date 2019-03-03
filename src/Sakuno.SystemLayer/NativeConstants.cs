@@ -1142,5 +1142,23 @@ namespace Sakuno.SystemLayer
             SERVICE_PAUSE_PENDING,
             SERVICE_PAUSED,
         }
+
+        public enum VARTYPE : ushort
+        {
+            VT_EMPTY,
+            VT_NULL,
+
+            VT_I4 = 3,
+            VT_R4,
+            VT_R8,
+
+            VT_BOOL = 11,
+
+            VT_UI4 = 19,
+            VT_I8,
+            VT_UI8,
+
+            VT_LPWSTR = 31,
+        }
     }
 }
