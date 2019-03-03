@@ -264,40 +264,74 @@ namespace Sakuno.SystemLayer
         [StructLayout(LayoutKind.Explicit)]
         public sealed class PROPVARIANT : IDisposable
         {
-            [FieldOffset(0)]
-            ushort _valueType;
-            public VarEnum VarType
-            {
-                get { return (VarEnum)_valueType; }
-                set { _valueType = (ushort)value; }
-            }
+            [field: FieldOffset(0)]
+            public NativeConstants.VARTYPE ValueType { get; private set; }
 
-            public bool IsNullOrEmpty => _valueType == (ushort)VarEnum.VT_EMPTY || _valueType == (ushort)VarEnum.VT_NULL;
+            public bool IsNullOrEmpty => ValueType == NativeConstants.VARTYPE.VT_EMPTY || ValueType == NativeConstants.VARTYPE.VT_NULL;
 
-            [FieldOffset(8)]
-            IntPtr _pointer;
+            [field: FieldOffset(8)]
+            public IntPtr PointerValue { get; private set; }
+            [field: FieldOffset(8)]
+            public int Int32Value { get; }
+            [field: FieldOffset(8)]
+            public uint UInt32Value { get; }
+            [field: FieldOffset(8)]
+            public long Int64Value { get; }
+            [field: FieldOffset(8)]
+            public ulong UInt64Value { get; }
+            [field: FieldOffset(8)]
+            public float FloatValue { get; }
+            [field: FieldOffset(8)]
+            public double DoubleValue { get; }
 
-            [FieldOffset(8)]
-            int _int32;
-
-            [FieldOffset(8)]
-            uint _uint32;
-
-            public string StringValue => _valueType == (ushort)VarEnum.VT_LPWSTR ? Marshal.PtrToStringUni(_pointer) : null;
-            public int Int32Value => _int32;
-            public uint UInt32Value => _uint32;
+            public string StringValue => ValueType == NativeConstants.VARTYPE.VT_LPWSTR ? Marshal.PtrToStringUni(PointerValue) : null;
 
             public PROPVARIANT() { }
+            public PROPVARIANT(bool value)
+            {
+                ValueType = NativeConstants.VARTYPE.VT_BOOL;
+                Int32Value = value ? -1 : 0;
+            }
+            public PROPVARIANT(int value)
+            {
+                ValueType = NativeConstants.VARTYPE.VT_I4;
+                Int32Value = value;
+            }
+            public PROPVARIANT(uint value)
+            {
+                ValueType = NativeConstants.VARTYPE.VT_UI4;
+                UInt32Value = value;
+            }
+            public PROPVARIANT(long value)
+            {
+                ValueType = NativeConstants.VARTYPE.VT_I8;
+                Int64Value = value;
+            }
+            public PROPVARIANT(ulong value)
+            {
+                ValueType = NativeConstants.VARTYPE.VT_UI8;
+                UInt64Value = value;
+            }
+            public PROPVARIANT(float value)
+            {
+                ValueType = NativeConstants.VARTYPE.VT_R4;
+                FloatValue = value;
+            }
+            public PROPVARIANT(double value)
+            {
+                ValueType = NativeConstants.VARTYPE.VT_R8;
+                DoubleValue = value;
+            }
             public PROPVARIANT(string value)
             {
                 if (value == null)
                     throw new ArgumentNullException(nameof(value));
 
-                VarType = VarEnum.VT_LPWSTR;
-                _pointer = Marshal.StringToCoTaskMemUni(value);
+                ValueType = NativeConstants.VARTYPE.VT_LPWSTR;
+                PointerValue = Marshal.StringToCoTaskMemUni(value);
             }
 
-            ~PROPVARIANT() => Dispose();
+            ~PROPVARIANT() => NativeMethods.Ole32.PropVariantClear(this);
             public void Dispose()
             {
                 NativeMethods.Ole32.PropVariantClear(this);
