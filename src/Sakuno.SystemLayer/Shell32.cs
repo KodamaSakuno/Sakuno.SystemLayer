@@ -19,9 +19,11 @@ namespace Sakuno.SystemLayer
             [DllImport(DllName, PreserveSig = false)]
             public static extern void SHParseDisplayName([MarshalAs(UnmanagedType.LPWStr)] string pszName, IntPtr pbc, out IntPtr ppidl, NativeEnums.SFGAO sfgaoIn, out NativeEnums.SFGAO psfgaoOut);
 
-            [DllImport(DllName)]
-            public static extern int SHOpenFolderAndSelectItems(IntPtr pidlFolder, int cidl, [MarshalAs(UnmanagedType.LPArray)] IntPtr[] apidl, int dwFlags);
+            [DllImport(DllName, PreserveSig = false)]
+            public static extern void SHOpenFolderAndSelectItems(IntPtr pidlFolder, int cidl, [MarshalAs(UnmanagedType.LPArray)] IntPtr[] apidl, int dwFlags);
 
+            [DllImport(DllName, PreserveSig = false)]
+            public static extern void SHGetPropertyStoreForWindow(IntPtr hwnd, in Guid riid, [MarshalAs(UnmanagedType.Interface)] out NativeInterfaces.IPropertyStore ppv);
         }
     }
 }
