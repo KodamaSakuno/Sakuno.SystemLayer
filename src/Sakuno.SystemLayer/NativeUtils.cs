@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
-using System.Windows;
 
 namespace Sakuno.SystemLayer
 {
@@ -18,11 +17,5 @@ namespace Sakuno.SystemLayer
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static IntPtr MakeParam(int lowWord, int highWord) => (IntPtr)(lowWord & 0xFFFF | highWord << 16);
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Point ToPoint(this IntPtr value) => new Point(value.LoWord(), value.HiWord());
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static IntPtr MAKEINTRESOURCEW(int value) => (IntPtr)(ushort)value;
     }
 }
