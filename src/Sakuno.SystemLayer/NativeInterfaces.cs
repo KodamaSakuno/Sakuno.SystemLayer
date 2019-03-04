@@ -117,7 +117,7 @@ namespace Sakuno.SystemLayer
         [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
         public interface IPropertyBag
         {
-            void Read([MarshalAs(UnmanagedType.LPWStr)] string pszPropName, NativeStructs.PROPVARIANT pVar, object pErrorLog = null);
+            void Read([MarshalAs(UnmanagedType.LPWStr)] string pszPropName, NativeStructs.PROPVARIANT pVar, IntPtr pErrorLog);
             void Write([MarshalAs(UnmanagedType.LPWStr)] string pszPropName, NativeStructs.PROPVARIANT pVar);
         }
 

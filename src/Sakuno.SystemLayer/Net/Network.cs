@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Runtime.InteropServices;
 
 namespace Sakuno.SystemLayer.Net
@@ -49,7 +49,7 @@ namespace Sakuno.SystemLayer.Net
 
                 using (var propertyVariant = new NativeStructs.PROPVARIANT())
                 {
-                    ((NativeInterfaces.IPropertyBag)_network).Read(propertyName, propertyVariant);
+                    ((NativeInterfaces.IPropertyBag)_network).Read(propertyName, propertyVariant, IntPtr.Zero);
 
                     return ((NativeEnums.NLM_INTERNET_CONNECTIVITY)propertyVariant.Int32Value).Has(NativeEnums.NLM_INTERNET_CONNECTIVITY.NLM_INTERNET_CONNECTIVITY_WEBHIJACK);
                 }
