@@ -11,7 +11,6 @@ namespace Sakuno.SystemLayer
 
         public static bool Is64Bit => IntPtr.Size == 8;
 
-        public static bool IsWinXPOrLater => _os.Version.Major >= 6 || (_os.Version.Major == 5 && _os.Version.Minor >= 1);
         public static bool IsWin7OrLater => _os.Version.Major >= 7 || (_os.Version.Major == 6 && _os.Version.Minor >= 1);
         public static bool IsWin8OrLater => _os.Version.Major >= 7 || (_os.Version.Major == 6 && _os.Version.Minor >= 2);
         public static bool IsWin8Point1OrLater => _os.Version.Major >= 7 || (_os.Version.Major == 6 && _os.Version.Minor >= 3);
