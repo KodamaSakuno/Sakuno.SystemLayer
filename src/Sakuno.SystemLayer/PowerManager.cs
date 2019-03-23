@@ -73,9 +73,9 @@ namespace Sakuno.SystemLayer
             return IntPtr.Zero;
         }
 
-        public static NativeStructs.SYSTEM_BATTERY_STATE GetSystemBatteryState()
+        public static unsafe NativeStructs.SYSTEM_BATTERY_STATE GetSystemBatteryState()
         {
-            NativeMethods.PowrProf.CallNtPowerInformation(NativeConstants.POWER_INFORMATION_LEVEL.SystemBatteryState, IntPtr.Zero, 0, out var state, Marshal.SizeOf(typeof(NativeStructs.SYSTEM_BATTERY_STATE)));
+            NativeMethods.PowrProf.CallNtPowerInformation(NativeConstants.POWER_INFORMATION_LEVEL.SystemBatteryState, IntPtr.Zero, 0, out var state, sizeof(NativeStructs.SYSTEM_BATTERY_STATE));
 
             return state;
         }

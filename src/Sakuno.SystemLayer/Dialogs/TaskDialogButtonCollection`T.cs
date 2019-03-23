@@ -43,7 +43,7 @@ namespace Sakuno.SystemLayer.Dialogs
         {
             Cleanup();
 
-            _nativeData = Marshal.AllocHGlobal(Marshal.SizeOf<NativeStructs.TASKDIALOG_BUTTON>() * Count);
+            _nativeData = Marshal.AllocHGlobal(sizeof(NativeStructs.TASKDIALOG_BUTTON) * Count);
             _nativeDataElementCount = Count;
 
             var current = (NativeStructs.TASKDIALOG_BUTTON*)_nativeData;
