@@ -40,9 +40,9 @@ namespace Sakuno.SystemLayer.Net
                 string propertyName;
 
                 var connectivity = Connectivity;
-                if (connectivity.Has(ConnectivityStates.IPv4Internet | ConnectivityStates.IPv4LocalNetwork))
+                if (connectivity.HasAny(ConnectivityStates.IPv4Internet | ConnectivityStates.IPv4LocalNetwork))
                     propertyName = "NA_InternetConnectivityV4";
-                else if (connectivity.Has(ConnectivityStates.IPv6Internet | ConnectivityStates.IPv6LocalNetwork))
+                else if (connectivity.HasAny(ConnectivityStates.IPv6Internet | ConnectivityStates.IPv6LocalNetwork))
                     propertyName = "NA_InternetConnectivityV6";
                 else
                     return false;
