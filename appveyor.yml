@@ -15,7 +15,7 @@ build:
   project: Sakuno.SystemLayer.sln
   verbosity: minimal
 after_test:
-- ps: Move-Item artifacts\$env:configuration\*.nupkg .
+- ps: Move-Item artifacts\$env:configuration\*.nupkg $env:APPVEYOR_BUILD_FOLDER
 artifacts:
 - path: '*.nupkg'
   name: NuGet
