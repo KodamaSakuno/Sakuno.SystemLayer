@@ -21,13 +21,11 @@ namespace Sakuno.SystemLayer.Audio
             try
             {
                 var propertyKey = new NativeStructs.PROPERTYKEY(NativeGuids.PKEY_Device_FriendlyName, 14);
+                using var propertyVariant = new NativeStructs.PROPVARIANT();
 
-                using (var propertyVariant = new NativeStructs.PROPVARIANT())
-                {
-                    properties.GetValue(propertyKey, propertyVariant);
+                properties.GetValue(propertyKey, propertyVariant);
 
-                    Name = propertyVariant.StringValue;
-                }
+                Name = propertyVariant.StringValue;
             }
             finally
             {

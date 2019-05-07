@@ -47,12 +47,11 @@ namespace Sakuno.SystemLayer.Net
                 else
                     return false;
 
-                using (var propertyVariant = new NativeStructs.PROPVARIANT())
-                {
-                    ((NativeInterfaces.IPropertyBag)_network).Read(propertyName, propertyVariant, IntPtr.Zero);
+                using var propertyVariant = new NativeStructs.PROPVARIANT();
 
-                    return ((NativeEnums.NLM_INTERNET_CONNECTIVITY)propertyVariant.Int32Value).Has(NativeEnums.NLM_INTERNET_CONNECTIVITY.NLM_INTERNET_CONNECTIVITY_WEBHIJACK);
-                }
+                ((NativeInterfaces.IPropertyBag)_network).Read(propertyName, propertyVariant, IntPtr.Zero);
+
+                return ((NativeEnums.NLM_INTERNET_CONNECTIVITY)propertyVariant.Int32Value).Has(NativeEnums.NLM_INTERNET_CONNECTIVITY.NLM_INTERNET_CONNECTIVITY_WEBHIJACK);
             }
         }
 

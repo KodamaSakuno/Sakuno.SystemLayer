@@ -26,13 +26,12 @@ namespace Sakuno.SystemLayer
 
                 try
                 {
-                    using (var registerKey = Registry.LocalMachine.OpenSubKey(SubKey, false))
-                    {
-                        if (registerKey != null && registerKey.GetValueKind(Name) == RegistryValueKind.DWord)
-                            return (int)registerKey.GetValue(Name);
+                    using var registerKey = Registry.LocalMachine.OpenSubKey(SubKey, false);
+                    
+                    if (registerKey != null && registerKey.GetValueKind(Name) == RegistryValueKind.DWord)
+                        return (int)registerKey.GetValue(Name);
 
-                        return null;
-                    }
+                    return null;
                 }
                 catch
                 {

@@ -116,9 +116,9 @@ namespace Sakuno.SystemLayer
             if (Interlocked.Exchange(ref _registeredWaitHandle, null) == null)
                 return;
 
-            using (var waitForDone = new ManualResetEvent(true))
-                if (_registeredWaitHandle.Unregister(waitForDone))
-                    waitForDone.WaitOne();
+            using var waitForDone = new ManualResetEvent(true);
+            if (_registeredWaitHandle.Unregister(waitForDone))
+                waitForDone.WaitOne();
         }
     }
 }

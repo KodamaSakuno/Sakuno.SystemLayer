@@ -18,17 +18,16 @@ namespace Sakuno.SystemLayer
 
                 try
                 {
-                    using (var registerKey = Registry.LocalMachine.OpenSubKey(SubKey, false))
+                    using var registerKey = Registry.LocalMachine.OpenSubKey(SubKey, false);
+
+                    if (registerKey != null && registerKey.GetValueKind(Name) == RegistryValueKind.DWord)
                     {
-                        if (registerKey != null && registerKey.GetValueKind(Name) == RegistryValueKind.DWord)
-                        {
-                            var value = (int)registerKey.GetValue(Name);
+                        var value = (int)registerKey.GetValue(Name);
 
-                            return value == 1;
-                        }
-
-                        return true;
+                        return value == 1;
                     }
+
+                    return true;
                 }
                 catch
                 {
