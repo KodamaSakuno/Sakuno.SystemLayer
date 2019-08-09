@@ -76,6 +76,11 @@ namespace Sakuno.SystemLayer
             [return: MarshalAs(UnmanagedType.Bool)]
             public static extern bool EnumThreadWindows(int dwThreadId, NativeDelegates.EnumWindowsProc lpEnumFunc, IntPtr lParam);
 
+            [DllImport(DllName, CharSet = CharSet.Unicode, SetLastError = true)]
+            public static extern IntPtr FindWindowW([MarshalAs(UnmanagedType.LPWStr)] string lpClassName, [MarshalAs(UnmanagedType.LPWStr)] string lpWindowName);
+            [DllImport(DllName, CharSet = CharSet.Unicode, SetLastError = true)]
+            public static extern IntPtr FindWindowExW(IntPtr hwndParent, IntPtr hwndChildAfter, [MarshalAs(UnmanagedType.LPWStr)] string lpClassName, [MarshalAs(UnmanagedType.LPWStr)] string lpWindowName);
+
             [DllImport(DllName, CharSet = CharSet.Unicode)]
             public static extern int GetClassNameW(IntPtr hWnd, [MarshalAs(UnmanagedType.LPWStr)] StringBuilder lpClassName, int nMaxCount);
             [DllImport(DllName, CharSet = CharSet.Unicode)]
