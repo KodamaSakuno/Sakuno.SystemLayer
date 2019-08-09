@@ -57,22 +57,22 @@ namespace Sakuno.SystemLayer
         [ComImport]
         [Guid("000214F9-0000-0000-C000-000000000046")]
         [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-        public interface IShellLinkW
+        public unsafe interface IShellLinkW
         {
-            void GetPath([MarshalAs(UnmanagedType.LPWStr)] StringBuilder pszFile, int cchMaxPath, ref NativeStructs.WIN32_FIND_DATAW pfd, NativeEnums.SLGP fFlags);
+            void GetPath(void* pszFile, int cchMaxPath, ref NativeStructs.WIN32_FIND_DATAW pfd, NativeEnums.SLGP fFlags);
             IntPtr GetIDList();
             void SetIDList(IntPtr pidl);
-            void GetDescription([MarshalAs(UnmanagedType.LPWStr)] StringBuilder pszName, int cchMaxName);
+            void GetDescription(void* pszName, int cchMaxName);
             void SetDescription([MarshalAs(UnmanagedType.LPWStr)] string pszName);
-            void GetWorkingDirectory([MarshalAs(UnmanagedType.LPWStr)] StringBuilder pszDir, int cchMaxPath);
+            void GetWorkingDirectory(void* pszDir, int cchMaxPath);
             void SetWorkingDirectory([MarshalAs(UnmanagedType.LPWStr)] string pszDir);
-            void GetArguments([MarshalAs(UnmanagedType.LPWStr)] StringBuilder pszArgs, int cchMaxPath);
+            void GetArguments(void* pszArgs, int cchMaxPath);
             void SetArguments([MarshalAs(UnmanagedType.LPWStr)] string pszArgs);
             ushort GetHotKey();
             void SetHotKey(ushort wHotKey);
             int GetShowCmd();
             void SetShowCmd(int iShowCmd);
-            int GetIconLocation([Out, MarshalAs(UnmanagedType.LPWStr)] StringBuilder pszIconPath, int cchIconPath);
+            int GetIconLocation(void* pszIconPath, int cchIconPath);
             void SetIconLocation([MarshalAs(UnmanagedType.LPWStr)] string pszIconPath, int iIcon);
             void SetRelativePath([MarshalAs(UnmanagedType.LPWStr)] string pszPathRel, uint dwReserved);
             void Resolve(IntPtr hwnd, uint fFlags);

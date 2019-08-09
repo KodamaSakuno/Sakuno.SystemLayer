@@ -82,9 +82,9 @@ namespace Sakuno.SystemLayer
             public static extern IntPtr FindWindowExW(IntPtr hwndParent, IntPtr hwndChildAfter, [MarshalAs(UnmanagedType.LPWStr)] string lpClassName, [MarshalAs(UnmanagedType.LPWStr)] string lpWindowName);
 
             [DllImport(DllName, CharSet = CharSet.Unicode)]
-            public static extern int GetClassNameW(IntPtr hWnd, [MarshalAs(UnmanagedType.LPWStr)] StringBuilder lpClassName, int nMaxCount);
+            internal static extern unsafe int GetClassNameW(IntPtr hWnd, void* lpClassName, int nMaxCount);
             [DllImport(DllName, CharSet = CharSet.Unicode)]
-            public static extern int GetWindowTextW(IntPtr hWnd, [MarshalAs(UnmanagedType.LPWStr)] StringBuilder lpText, int nMaxCount);
+            internal static extern unsafe int GetWindowTextW(IntPtr hWnd, void* lpText, int nMaxCount);
 
             #region Window Long
 
