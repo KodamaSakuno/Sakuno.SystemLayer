@@ -3,12 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>netcoreapp3.0;net462</TargetFrameworks>
     <OutputType>Library</OutputType>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <LangVersion>8.0</LangVersion>
-    <RootNamespace>Sakuno.SystemLayer</RootNamespace>
-    <AssemblyName>Sakuno.SystemLayer</AssemblyName>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <OutputPath>$(SolutionDir)artifacts\$(Configuration)\</OutputPath>
+    <OutputPath>$(BasePath)artifacts\$(Configuration)\</OutputPath>
     <PackageId>Sakuno.SystemLayer</PackageId>
     <Version>0.4.1</Version>
     <Authors>Kodama Sakuno</Authors>
