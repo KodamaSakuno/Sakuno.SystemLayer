@@ -156,8 +156,7 @@ namespace Sakuno.SystemLayer
             _persistFile = (IPersistFile)_shellLink;
             _propertyStore = (NativeInterfaces.IPropertyStore)_shellLink;
 
-            if (File.Exists(filename))
-                _persistFile.Load(filename, 0);
+            _persistFile.Load(filename, File.Exists(filename) ? 0 : (int)NativeEnums.STGM.STGM_CREATE);
         }
 
         public void Save()
