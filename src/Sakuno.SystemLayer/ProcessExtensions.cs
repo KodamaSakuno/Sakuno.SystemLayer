@@ -13,10 +13,13 @@ namespace Sakuno.SystemLayer
             if (process == null)
                 throw new ArgumentNullException(nameof(process));
 
-            var tcs = new TaskCompletionSource<int>();
+            if (process.HasExited)
+                return Task.FromResult(process.ExitCode);
 
-            process.EnableRaisingEvents = true;
+            var tcs = new TaskCompletionSource<int>(TaskCreationOptions.RunContinuationsAsynchronously);
+
             process.Exited += OnProcessExited;
+            process.EnableRaisingEvents = true;
 
             if (process.HasExited)
                 tcs.TrySetResult(process.ExitCode);
