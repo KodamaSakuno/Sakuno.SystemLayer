@@ -13,7 +13,7 @@ namespace Sakuno.SystemLayer
         {
             [return: MarshalAs(UnmanagedType.IUnknown)]
             object Activate(in Guid iid, uint dwClsCtx, IntPtr pActivationParams);
-            IPropertyStore OpenPropertyStore(NativeConstants.STGM stgmAccess);
+            IPropertyStore OpenPropertyStore(NativeEnums.STGM stgmAccess);
             [return: MarshalAs(UnmanagedType.LPWStr)]
             string GetId();
             AudioDeviceState GetState();

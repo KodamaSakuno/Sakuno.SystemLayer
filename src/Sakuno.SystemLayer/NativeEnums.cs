@@ -496,5 +496,14 @@ namespace Sakuno.SystemLayer
             RESTART_NO_PATCH = 4,
             RESTART_NO_REBOOT = 8,
         }
+
+        [Flags]
+        public enum STGM
+        {
+            STGM_READ,
+            STGM_WRITE = 1,
+            STGM_READWRITE = 2,
+            STGM_CREATE = 0x1000,
+        }
     }
 }

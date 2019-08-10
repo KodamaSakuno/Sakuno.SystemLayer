@@ -16,7 +16,7 @@ namespace Sakuno.SystemLayer.Audio
         {
             _device = device;
 
-            var properties = _device.OpenPropertyStore(NativeConstants.STGM.STGM_READ);
+            var properties = _device.OpenPropertyStore(NativeEnums.STGM.STGM_READ);
 
             try
             {
