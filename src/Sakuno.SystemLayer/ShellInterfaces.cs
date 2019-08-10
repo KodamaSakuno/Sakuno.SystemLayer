@@ -3,7 +3,6 @@ using System;
 using System.Collections;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.ComTypes;
-using System.Text;
 
 namespace Sakuno.SystemLayer
 {
@@ -57,9 +56,9 @@ namespace Sakuno.SystemLayer
         [ComImport]
         [Guid("000214F9-0000-0000-C000-000000000046")]
         [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-        public unsafe interface IShellLinkW
+        internal unsafe interface IShellLinkW
         {
-            void GetPath(void* pszFile, int cchMaxPath, ref NativeStructs.WIN32_FIND_DATAW pfd, NativeEnums.SLGP fFlags);
+            void GetPath(void* pszFile, int cchMaxPath, IntPtr pfd, NativeEnums.SLGP fFlags);
             IntPtr GetIDList();
             void SetIDList(IntPtr pidl);
             void GetDescription(void* pszName, int cchMaxName);
@@ -70,8 +69,8 @@ namespace Sakuno.SystemLayer
             void SetArguments([MarshalAs(UnmanagedType.LPWStr)] string pszArgs);
             ushort GetHotKey();
             void SetHotKey(ushort wHotKey);
-            int GetShowCmd();
-            void SetShowCmd(int iShowCmd);
+            NativeConstants.ShowCommand GetShowCmd();
+            void SetShowCmd(NativeConstants.ShowCommand iShowCmd);
             int GetIconLocation(void* pszIconPath, int cchIconPath);
             void SetIconLocation([MarshalAs(UnmanagedType.LPWStr)] string pszIconPath, int iIcon);
             void SetRelativePath([MarshalAs(UnmanagedType.LPWStr)] string pszPathRel, uint dwReserved);
@@ -81,7 +80,7 @@ namespace Sakuno.SystemLayer
         [ComImport]
         [Guid("00021401-0000-0000-C000-000000000046")]
         [ClassInterface(ClassInterfaceType.None)]
-        public class CShellLink { }
+        internal class CShellLink { }
 
         [ComImport]
         [Guid("B4DB1657-70D7-485E-8E3E-6FCB5A5C1802")]
